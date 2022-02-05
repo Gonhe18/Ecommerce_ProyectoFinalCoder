@@ -2,6 +2,7 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   scroll-behavior: smooth;
 }
 
 /* Navbar */
@@ -72,18 +73,24 @@
 }
 .banner-btn{
    padding: 1rem 3rem;
-   text-transform: uppercase;
-   letter-spacing: 0.1rem;
-   font-size: 1rem;
    background-color:orange;
-   color: #000;
    border: 1px solid orange;
    transition: all 0.3s linear;
    cursor: pointer;
+   
+}
+.banner-btn a{
+   text-transform: uppercase;
+   letter-spacing: 0.1rem;
+   font-size: 1rem;
+   text-decoration: none;
+   color: #000;
 }
 .banner-btn:hover{
    background: transparent;
 }
+
+
 
 /* Card Productos */
 
@@ -236,11 +243,16 @@
 .cant-item{
    text-align: center;
 }
-remove-item{
+.remove-item{
    color: gray;
    cursor: pointer;
 }
-
+.remove-item:hover{
+   background: red;
+   color: #000;
+   padding: 3px;
+   border-radius: 5px;
+}
 .fa-chevron-up, .fa-chevron-down{
    color: orange;
    cursor: pointer;
