@@ -28,6 +28,9 @@
 .nav-icon{
    font-size: 1.5rem;
 }
+.nav-icon .logo_nav{
+   width: 40%;
+}
 .cart-btn{
    position: relative;
    cursor: pointer;
