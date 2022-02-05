@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViceARG</title>
+
+    <!--icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./css/estilos.css" />
+  </head>
+  <body>
+    <!--Menú navegación-->
+    <nav class="navbar">
+      <div class="navbar-center">
+        <span class="nav-icon">
+          <i class="fas fa-bars"></i>
+        </span>
+        <h1>ViceARG</h1>
+        <div class="cart-btn">
+          <span class="nav-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </span>
+          <div class="cart-items">0</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Inicio -->
+    <header class="inicio">
+      <div class="banner">
+        <h2 class="banner-title">ViceARG</h2>
+        <button class="banner-btn">Comprar</button>
+      </div>
+    </header>
+
+    <!-- Seccion Productos -->
+    <section class="productos">
+      <div class="titulo-prod">
+        <h2>Productos</h2>
+      </div>
+      <div class="card-prod">
+        <!-- Productos -->
+        <article class="prod">
+          <div class="img-contenedor">
+            <img
+              src="./img/fondo-index.png"
+              alt="Producto"
+              class="prod-img"
+            />
+            <button class="bag-btn" data-id="1">
+              <i class="fas fa-shopping-cart"></i>
+              Agregar a carrito
+            </button>
+          </div>
+          <h3>Teclado</h3>
+          <h4>$5000</h4>
+        </article>
+        <article class="prod">
+          <div class="img-contenedor">
+            <img
+              src="./img/fondo-index.png"
+              alt="Producto"
+              class="prod-img"
+            />
+            <button class="bag-btn" data-id="1">
+              <i class="fas fa-shopping-cart"></i>
+              Agregar a carrito
+            </button>
+          </div>
+          <h3>Teclado</h3>
+          <h4>$5000</h4>
+        </article>
+        <article class="prod">
+          <div class="img-contenedor">
+            <img
+              src="./img/fondo-index.png"
+              alt="Producto"
+              class="prod-img"
+            />
+            <button class="bag-btn" data-id="1">
+              <i class="fas fa-shopping-cart"></i>
+              Agregar a carrito
+            </button>
+          </div>
+          <h3>Teclado</h3>
+          <h4>$5000</h4>
+        </article>
+        <!-- fin productos -->
+      </div>
+    </section>
+
+    <section class="bloque-carrito">
+      <div class="carrito">
+        <span class="fin-carrito">
+          <i class="fas fa-window-close"></i>
+        </span>
+        <h2>Tu Carrito</h2>
+        <div class="contenido-carrito">
+          <div class="carrito-item">
+            <img
+              src="./img/fondo-index.png"
+              alt="prod"
+            />
+            <div>
+              <h4>Teclado</h4>
+              <h5>$5000</h5>
+              <span class="remove-item">Remove</span>
+            </div>
+            <div>
+              <i class="fas fa-chevron-up"></i>
+              <p class="cant-item">1</p>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="carrito-footer">
+          <h3>El total es: s <span class="total-carrito">0</span></h3>
+          <button class="limpiar-carro banner-btn">Vaciar Carrito</button>
+        </div>
+      </div>
+    </section>
+
+    <!--Filtro-->
+    <!-- <section class="filter">
+      <div class="grid">
+        <div class="category">
+          <select id="category" onclick="categoryValue()">
+            <option value="">Categorías</option>
+            <option value="Teclado">Teclado</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Auriculares">Auriculares</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Notebook">Notebook</option>
+          </select>
+        </div>
+      </div>
+    </section> -->
+
+    <!--Productos-->
+    <!-- <section class="productos">
+      <div class="productos__center"> -->
+    <!-- <div class="producto">
+          <div class="image__container">
+            <img src="https://cdn4.chrono24.com/images/topmodels/2875-7wlcl6ogfoc0qxg22ox6up9m-Original.png?auto=compress&amp;h=305" alt="">
+          </div>
+          <div class="producto__footer">
+            <h1>Rejoles Originales</h1>
+            <div class="rating">
+              <span>
+                <i class="bx bxs-star"></i>
+              </span>
+              <span>
+                <i class="bx bxs-star"></i>
+              </span>
+              <span>
+                <i class="bx bxs-star"></i>
+              </span>
+              <span>
+                <i class="bx bxs-star"></i>
+              </span>
+              <span>
+                <i class="bx bx-star"></i>
+              </span>
+            </div>
+            <div class="price">$102.00</div>
+          </div>
+          <div class="bottom">
+            <div class="btn__group">
+              <a href="#" class="btn addToCart">Añadir carrito</a>
+              <a href="producto-detalles.html" class="btn view">Vista</a>
+            </div>
+          </div>
+        </div> -->
+    <!-- </div>
+    </section> -->
+
+    <!--Carrito-->
+    <!-- 
+    <section class="carrito__overlay">
+      <div class="carrito">
+        <span class="close__carrito">
+          <i class="bx bx-x"></i>
+        </span>
+        <h1>Su Carrito</h1>
+
+        <div class="carrito__center"> -->
+    <!-- <div class="carrito__item">
+            <img src="https://cdn4.chrono24.com/images/topmodels/2875-7wlcl6ogfoc0qxg22ox6up9m-Original.png?auto=compress&amp;h=305" alt="reloj">
+            <div>
+              <h3>Relojes Originales </h3>
+              <p class="price">$122</p>
+            </div>
+            <div>
+              <span>
+                <i class="bx bxs-up-arrow"></i>
+              </span>
+              <p>1</p>
+              <span>
+                <i class="bx bxs-down-arrow"></i>
+              </span>
+            </div>
+            <div>
+              <span class="remove__item">
+                <i class="bx bx-trash"></i>
+              </span>
+            </div>
+            
+          </div> -->
+    <!-- </div>
+
+        <div class="carrito__footer">
+          <h3>Total: $ <span class="carrito__total">0</span></h3>
+          <button class="clear__carrito btn">remover carrito</button>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <script src="./js/scripts.js"></script> -->
+  </body>
+</html>
