@@ -6,31 +6,82 @@ import { CompraCte } from "./detalleCompra.js";
 // Array que almacena cada compra
 const comprasTotales = [];
 
-// Muestro carrito
+// MUESTRO CARRITO
 document.querySelector(".cart-btn").addEventListener("click", (e) => {
   e.preventDefault();
-
-  document
-    .querySelector(".bloque-carrito")
-    .classList.add("transparenteBcg");
+  // Muestro carro
+  document.querySelector(".bloque-carrito").classList.add("transparenteBcg");
   document.querySelector(".carrito").classList.add("showCart");
+
+  // Cargo información de los objetos agregados
+  let carrito = document.querySelector(".contenido-carrito");
+  let saldo = parseInt(document.querySelector(".total-carrito").textContent);
+  for (let item of comprasTotales) {
+    let templateCarrito = document.createElement("div");
+    templateCarrito.classList.add("carrito-item");
+    templateCarrito.innerHTML = `
+    <img src=${item.img} alt="prod"/>
+    <div>
+    <h4>${item.ref} - ${item.marca} ${item.modelo}</h4>
+    <h5>$${item.precio}</h5>
+    <span class="remove-item" data-id=${item.id}>Remove<span>
+    </div>
+    <div>
+    <i class="fas fa-chevron-up"></i>
+    <p class="cant-item">1</p>
+    <i class="fas fa-chevron-down"></i>
+    </div>
+    `;
+    carrito.appendChild(templateCarrito);
+    saldo += item.precio;
+  }
+  document.querySelector(".total-carrito").innerHTML = saldo;
+
+  let totalProductos = document.querySelectorAll(".carrito-item");
+  let removerProd = document.querySelectorAll(".remove-item");
+
+  for (let i = 0; i < removerProd.length; i++) {
+    console.log(totalProductos[i]);
+    removerProd[i].addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Remuevo elemento del Array
+      comprasTotales.splice(removerProd[i], 1);
+      // Lo elimino desde el detalle de compra
+      // totalProductos[i].innerHTML = "";
+    });
+  }
 });
 
-// Oculto carrito
+// OCULTAR CARRITO
 document.querySelector(".fin-carrito").addEventListener("click", (e) => {
   e.preventDefault();
-
-  document
-    .querySelector(".bloque-carrito")
-    .classList.remove("transparenteBcg");
+  // Oculto carro
+  document.querySelector(".bloque-carrito").classList.remove("transparenteBcg");
   document.querySelector(".carrito").classList.remove("showCart");
+  // Elimino el contenido del carro, para que se genere en base al objeto de prod
+  document.querySelector(".contenido-carrito").innerHTML = "";
+  document.querySelector(".total-carrito").innerHTML = "0";
 });
 
-// Genero las card de los productos en base a la cantidad que existan
-let tarjetas = document.querySelector(".card-prod");
+// VACIAR CARRITO
+document.querySelector(".limpiar-carro").addEventListener("click", (e) => {
+  e.preventDefault();
+  // Elimino el contenido del carro
+  comprasTotales.splice((0)[comprasTotales.length]);
+  // lista de prod
+  document.querySelector(".contenido-carrito").innerHTML = "";
+  // precio final
+  document.querySelector(".total-carrito").innerHTML = "0";
+  // contador de prod
+  document.querySelector(".cart-items").innerHTML = "0";
+});
+
 window.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
 
+  // GENERO LAS CARD
+  let tarjetas = document.querySelector(".card-prod");
   for (const prod of productos) {
     let cardProd = document.createElement("article");
     cardProd.classList.add("prod");
@@ -48,45 +99,56 @@ window.addEventListener("DOMContentLoaded", (e) => {
     `;
     tarjetas.appendChild(cardProd);
   }
+
+  // AGREGO PRODUCTOS AL OBJETO DEL CARRITO
+  let btnCompra = document.querySelectorAll(".bag-btn");
+  // Obtengo producto por ID
+  for (let i = 0; i < btnCompra.length; i++) {
+    btnCompra[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      // Según ID almaceno el producto en el array
+      let item = btnCompra[i].getAttribute("data-id");
+      let filtroProd = (arr, prod) => {
+        return arr.find((el) => el.id == prod);
+      };
+      comprasTotales.push(filtroProd(productos, item));
+      document.querySelector(".cart-items").innerHTML = comprasTotales.length;
+    });
+  }
 });
 
-
-
-
-
-
 // Para iniciar el programa consulto si desea hacer una compra
-let hacerCompra = confirm("Desea hacer una compra?");
+// let hacerCompra = confirm("Desea hacer una compra?");
 
 // Si el valor es true inicia el ciclo, ejecutando la función principal para la compra
-while (hacerCompra == true) {
-  // Se toman los datos que retorna la función.
-  let [prodCompra, canalPago] = datosCompra();
-  // Almaceno el precio del producto con descuento (lo hago acá para poder usar esa variable, ya que sino solo puedo manipular el precio real).
-  let precioFinal =
-    prodCompra.precio - (prodCompra.precio * canalPago.descuento) / 100;
+// while (hacerCompra == true) {
+// Se toman los datos que retorna la función.
+// let [prodCompra, canalPago] = datosCompra();
+// Almaceno el precio del producto con descuento (lo hago acá para poder usar esa variable, ya que sino solo puedo manipular el precio real).
+// let precioFinal =
+//   prodCompra.precio - (prodCompra.precio * canalPago.descuento) / 100;
 
-  // Se crea objeto
-  let compra1 = new CompraCte(
-    prodCompra.ref,
-    prodCompra.img,
-    prodCompra.marca,
-    prodCompra.modelo,
-    prodCompra.precio,
-    precioFinal,
-    canalPago.medioPago,
-    canalPago.descuento
-  );
+// Se crea objeto
+// let compra1 = new CompraCte(
+//   prodCompra.ref,
+//   prodCompra.img,
+//   prodCompra.marca,
+//   prodCompra.modelo,
+//   prodCompra.precio,
+//   precioFinal,
+//   canalPago.medioPago,
+//   canalPago.descuento
+// );
 
-  // Se agrega al Array
-  comprasTotales.push(compra1);
+// Se agrega al Array
+// comprasTotales.push(compra1);
 
-  // Se ejecuta el método que posee la clase para mostrar el detalle de la compra.
-  compra1.descripcionCompra();
+// Se ejecuta el método que posee la clase para mostrar el detalle de la compra.
+// compra1.descripcionCompra();
 
-  // Por último se consulta si desea hacer nueva comprar, sino se cierra el ciclo.
-  hacerCompra = confirm("Desea hacer una nueva compra?");
-}
+// Por último se consulta si desea hacer nueva comprar, sino se cierra el ciclo.
+// hacerCompra = confirm("Desea hacer una nueva compra?");
+// }
 
 // Al finalizar el ciclo, si existió una compra muestro el detalle de la compra, la cantidad de productos comprados y precio final a abonar.
 // if (comprasTotales.length > 0) {
@@ -135,3 +197,5 @@ while (hacerCompra == true) {
 //   msj.innerHTML = "No se ha realizado ninguna compra";
 //   detalle.appendChild(msj);
 // }
+
+// ------------------------------------------------
