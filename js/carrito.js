@@ -64,7 +64,7 @@ document.querySelector(".cart-btn").addEventListener("click", (e) => {
     </div>
     <div>
     <i class="fas fa-chevron-up"></i>
-    <p class="cant-item">${cantProd}</p>
+    <p class="cant-item">"1"</p>
     <i class="fas fa-chevron-down"></i>
     </div>
     `;
