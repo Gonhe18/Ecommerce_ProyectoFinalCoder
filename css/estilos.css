@@ -267,3 +267,10 @@
    text-transform: capitalize;
    margin-bottom: 1rem;
 }
+footer p{
+   background-color: #000;
+   color: #fff;
+   font-size: 1.1rem;
+   text-align: center;
+   padding: 5px 0;
+}
