@@ -5,7 +5,7 @@ const productos = [
     marca: "HyperX",
     modelo: "Alloy Origins Core RGB",
     precio: 8190,
-    img: "../img/Teclado.jpg",
+    img: "./img/Teclado.jpg",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const productos = [
     marca: "HyperX",
     modelo: "PulseFire Raid",
     precio: 2999,
-    img: "../img/Mouse.jpg",
+    img: "./img/Mouse.jpg",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const productos = [
     marca: "Corsair",
     modelo: "Virtuoso RGB",
     precio: 26290,
-    img: "../img/Auriculares.jpg",
+    img: "./img/Auriculares.jpg",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const productos = [
     marca: "Samsung",
     modelo: "G50 Curvo 144Hz",
     precio: 39190,
-    img: "../img/Monitores.jpg",
+    img: "./img/Monitores.jpg",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const productos = [
     marca: "Asus",
     modelo: "X515EA",
     precio: 99990,
-    img: "../img/Notebook.jpg",
+    img: "./img/Notebook.jpg",
   },
 ];
 
