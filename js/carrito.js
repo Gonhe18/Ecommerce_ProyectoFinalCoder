@@ -2,35 +2,78 @@
 import { productos } from "./productoPago.js";
 
 // Variables
+let tarjetas = document.querySelector(".card-prod");
 let visualCarrito = document.querySelector(".contenido-carrito");
+let categoria = document.getElementById("category");
+
+let carritoAlmacen = JSON.parse(localStorage.getItem("carrito"));
 
 // Array que almacena cada compra
-const carrito = [];
+let carrito = [];
 
 // Función para filtra productos por id
 let filtroProd = (arr, prod) => {
   return arr.find((el) => el.id == prod);
 };
 
+// Modifico botón de compra
+const habBtnCompra = () => {
+  let btnCompra = document.querySelectorAll(".bag-btn");
+  for (let i = 0; i < btnCompra.length; i++) {
+    let indiceBtn = btnCompra[i].getAttribute("data-id");
+    let lugarProd = filtroProd(carrito, indiceBtn);
+    if (lugarProd === undefined) {
+      btnCompra[i].disabled = false;
+      btnCompra[i].innerHTML = `
+        <i class="fas fa-shopping-cart"></i>
+        Agregar a carrito
+      `;
+    } else {
+      btnCompra[i].disabled = true;
+      btnCompra[i].innerHTML = `
+      <i class="fa-solid fa-check-to-slot"></i>
+      En el carrito
+      `;
+    }
+  }
+};
 
+// Filtro por producto en index
+categoria.addEventListener("click", (e) => {
+  let fil = productos.filter((item) => item.ref === e.target.value);
+  if (fil != "") {
+    tarjetas.innerHTML = "";
+    generoCard(fil);
+    addProdCarrito();
+  } else {
+    tarjetas.innerHTML = "";
+    generoCard(productos);
+    addProdCarrito();
+  }
+});
 
+// Función principal
 window.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
-
+  // Recumero el Storage
+  if (carritoAlmacen) {
+    localStorage.getItem("carrito");
+    carrito = [...carritoAlmacen];
+    // Actualizo contador carrito
+    document.querySelector(".cart-items").innerHTML = carrito.length;
+  }
   // Genero las card en el index
-  generoCard();
+  generoCard(productos);
+
   // Agrego las card al objeto
   addProdCarrito();
   // Muestro el carrito y aplico sus respectivas funciones
   mostrarCarrito();
 });
 
-
-
 // GENERO LAS CARD
-const generoCard = () => {
-  let tarjetas = document.querySelector(".card-prod");
-  for (const prod of productos) {
+const generoCard = (articulos) => {
+  articulos.forEach((prod) => {
     let cardProd = document.createElement("article");
     cardProd.classList.add("prod");
     cardProd.innerHTML = `
@@ -46,10 +89,9 @@ const generoCard = () => {
       <h4>$${prod.precio}</h4>
       `;
     tarjetas.appendChild(cardProd);
-  }
+  });
+  habBtnCompra()
 };
-
-
 
 // AGREGO PRODUCTOS AL OBJETO DEL CARRITO
 const addProdCarrito = () => {
@@ -71,14 +113,13 @@ const addProdCarrito = () => {
         cantidad: 1,
       };
       carrito.push(itemComprado);
-      btnCompra[i].disabled = true;
-      btnCompra[i].innerHTML = "En el carrito";
+      habBtnCompra()
       document.querySelector(".cart-items").innerHTML = carrito.length;
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
     });
   }
 };
-
-
 
 // MUESTRO CARRITO
 const mostrarCarrito = () => {
@@ -88,16 +129,16 @@ const mostrarCarrito = () => {
     document.querySelector(".bloque-carrito").classList.add("transparenteBcg");
     document.querySelector(".carrito").classList.add("showCart");
 
+    // CARGO LA INFORMACIÓN DEL CARRITO
     cargarCarrito();
     // MODIFICO CANTIDAD DE PRODUCTOS
-    cantElementos(visualCarrito);
-
+    cantElementos();
     // REMUEVO ELEMENTO DESDE CARRITO
-    removeProd(visualCarrito);
-    // OCULTO CARRITO
-    ocultarCarrito();
+    removeProd();
     // VACIO CARRITO
     vaciarCarrito();
+    // OCULTO CARRITO
+    ocultarCarrito();
   });
 };
 
@@ -107,7 +148,7 @@ const cargarCarrito = () => {
   carrito.forEach((item) => {
     let templateCarrito = document.createElement("div");
     templateCarrito.classList.add("carrito-item");
-    templateCarrito.setAttribute('data-id',`${item.id}`)
+    templateCarrito.setAttribute("data-id", `${item.id}`);
     templateCarrito.innerHTML = `
   <img src=${item.img} alt="prod"/>
   <div>
@@ -128,17 +169,9 @@ const cargarCarrito = () => {
   document.querySelector(".total-carrito").innerHTML = saldo;
 };
 
-
-
-
-
 // ACUMULADOR DE PRODUCTOS
-const cantElementos = (carro) => {
+const cantElementos = () => {
   let contador = document.querySelectorAll(".contador");
-  let btnCompra = document.querySelectorAll(".bag-btn");
-  let aumentar = document.querySelectorAll(".aumentar");
-  let disminuir = document.querySelectorAll(".disminuir");
-  let totalProductos = document.querySelectorAll(".carrito-item");
   let saldo = parseInt(document.querySelector(".total-carrito").textContent);
   let acum = parseInt(document.querySelector(".cart-items").textContent);
 
@@ -187,35 +220,25 @@ const cantElementos = (carro) => {
           acum--;
           // Remuevo elemento del Array
           carrito.splice(indiceProd, 1);
-
           // Lo elimino desde el detalle de compra
-
+          // ???????????????
           // Actualizo saldo
           document.querySelector(".total-carrito").innerHTML = saldo;
           // Actualizo contador carrito
           document.querySelector(".cart-items").innerHTML = acum;
-
-          // Actualizo los botones en el index
-          // btnCompra[indiceProd].disabled = false;
-          // btnCompra[indiceProd].innerHTML = `
-          //   <i class="fas fa-shopping-cart"></i>
-          //   Agregar a carrito
-          // `;
-          // console.log(indiceProd)
-          // console.log(btnCompra)
+          // Habilito botones productos
+          habBtnCompra();
+          localStorage.setItem("carrito", JSON.stringify(carrito));
         }
       }
     });
   });
 };
 
-
-
 // REMUEVO ELEMENTO DESDE CARRITO
-const removeProd = (carro) => {
+const removeProd = () => {
   let totalProductos = document.querySelectorAll(".carrito-item");
   let removerProd = document.querySelectorAll(".remove-item");
-  let btnCompra = document.querySelectorAll(".bag-btn");
 
   for (let i = 0; i < removerProd.length; i++) {
     removerProd[i].addEventListener("click", (e) => {
@@ -227,7 +250,7 @@ const removeProd = (carro) => {
       // Remuevo elemento del Array
       carrito.splice(indiceProd, 1);
       // Lo elimino desde el detalle de compra
-      carro.removeChild(totalProductos[i]);
+      visualCarrito.removeChild(totalProductos[i]);
       // actualizo saldo
       for (let item of carrito) {
         saldoNuevo += item.precio;
@@ -236,16 +259,12 @@ const removeProd = (carro) => {
       // Actualizo contador carrito
       document.querySelector(".cart-items").innerHTML = carrito.length;
       // Habilito botones de productos
-      btnCompra[i].disabled = false;
-      btnCompra[i].innerHTML = `
-        <i class="fas fa-shopping-cart"></i>
-        Agregar a carrito
-      `;
+      habBtnCompra();
+      // Elimino un elemento del localStorage
+      localStorage.setItem("carrito", JSON.stringify(carrito));
     });
   }
 };
-
-
 
 // OCULTAR CARRITO
 const ocultarCarrito = () => {
@@ -262,11 +281,8 @@ const ocultarCarrito = () => {
   });
 };
 
-
-
 // VACIAR CARRITO
 const vaciarCarrito = () => {
-  let btnCompra = document.querySelectorAll(".bag-btn");
   document.querySelector(".limpiar-carro").addEventListener("click", (e) => {
     e.preventDefault();
     // Elimino el contenido del carro
@@ -278,12 +294,8 @@ const vaciarCarrito = () => {
     // contador de prod
     document.querySelector(".cart-items").innerHTML = "0";
     // Habilito botones productos
-    for (let i = 0; i < btnCompra.length; i++) {
-      btnCompra[i].disabled = false;
-      btnCompra[i].innerHTML = `
-        <i class="fas fa-shopping-cart"></i>
-        Agregar a carrito
-      `;
-    }
+    habBtnCompra();
+    // Elimino todos los elementos del localStorage
+    localStorage.clear();
   });
 };
