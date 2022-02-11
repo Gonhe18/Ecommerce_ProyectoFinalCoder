@@ -274,3 +274,19 @@ footer p{
    text-align: center;
    padding: 5px 0;
 }
+
+/* Filtro */
+.filter{
+   width: 100%;
+   text-align: center;
+   position: absolute;
+   top:120%
+}
+.grid{
+   padding: 15px 0;
+}
+#category{
+   width: 30vw;
+   height: 25px;
+   text-align: center;
+}

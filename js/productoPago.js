@@ -1,7 +1,7 @@
 const productos = [
     {
     id: 1,
-    ref: "TECLADO",
+    ref: "Teclado",
     marca: "HyperX",
     modelo: "Alloy Origins Core RGB",
     precio: 8190,
@@ -9,7 +9,7 @@ const productos = [
   },
   {
     id: 2,
-    ref: "MOUSE",
+    ref: "Mouse",
     marca: "HyperX",
     modelo: "PulseFire Raid",
     precio: 2999,
@@ -17,7 +17,7 @@ const productos = [
   },
   {
     id: 3,
-    ref: "AURICULARES",
+    ref: "Auriculares",
     marca: "Corsair",
     modelo: "Virtuoso RGB",
     precio: 26290,
@@ -25,7 +25,7 @@ const productos = [
   },
   {
     id: 4,
-    ref: "MONITOR",
+    ref: "Monitor",
     marca: "Samsung",
     modelo: "G50 Curvo 144Hz",
     precio: 39190,
@@ -33,7 +33,7 @@ const productos = [
   },
   {
     id: 5,
-    ref: "NOTEBOOK",
+    ref: "Notebook",
     marca: "Asus",
     modelo: "X515EA",
     precio: 99990,
