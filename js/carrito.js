@@ -1,21 +1,88 @@
 // Importo Objeto de productos
 import { productos } from "./productoPago.js";
+// Importo carrito
+import { carrito } from "./script.js";
 
 // Variables
 let tarjetas = document.querySelector(".card-prod");
 let visualCarrito = document.querySelector(".contenido-carrito");
-let categoria = document.getElementById("category");
+let btnPago = document.querySelector(".btn-pago");
 
-let carritoAlmacen = JSON.parse(localStorage.getItem("carrito"));
+// GENERO LAS CARD
+export const generoCard = (articulos) => {
+  articulos.forEach((prod) => {
+    let cardProd = document.createElement("article");
+    cardProd.classList.add("prod");
+    cardProd.innerHTML = `
+      <div class="img-contenedor">
+        <img src=${prod.img} alt="Producto" class="prod-img"/>
+        <button class="bag-btn" data-id=${prod.id}>
+          <i class="fas fa-shopping-cart"></i>
+        Agregar a carrito
+        </button>
+      </div>
+      <h3>${prod.ref}</h3>
+      <h4>${prod.marca} ${prod.modelo}</h4>
+      <h4>$${prod.precio}</h4>
+      `;
+    tarjetas.appendChild(cardProd);
+  });
+  habBtnCompra();
+};
 
-// Array que almacena cada compra
-let carrito = [];
+// AGREGO PRODUCTOS AL OBJETO DEL CARRITO
+export const addProdCarrito = () => {
+  let btnCompra = document.querySelectorAll(".bag-btn");
+  // Obtengo producto por ID
+  for (let i = 0; i < btnCompra.length; i++) {
+    btnCompra[i].addEventListener("click", (e) => {
+      e.preventDefault();
+      // Según ID almaceno el producto en el array
+      let idItem = btnCompra[i].getAttribute("data-id");
+      let prod = filtroProd(productos, idItem);
+      let itemComprado = {
+        id: prod.id,
+        categoria: prod.ref,
+        marca: prod.marca,
+        modelo: prod.modelo,
+        precio: prod.precio,
+        img: prod.img,
+        cantidad: 1,
+      };
+      carrito.push(itemComprado);
+      habBtnCompra();
+      document.querySelector(".cart-items").innerHTML = carrito.length;
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+    });
+  }
+};
+
+// MUESTRO CARRITO
+export const mostrarCarrito = () => {
+  document.querySelector(".cart-btn").addEventListener("click", (e) => {
+    e.preventDefault();
+    // Muestro carro
+    document.querySelector(".bloque-carrito").classList.add("transparenteBcg");
+    document.querySelector(".carrito").classList.add("showCart");
+    // CARGO LA INFORMACIÓN DEL CARRITO
+    cargarCarrito();
+
+    accionPago();
+    // MODIFICO CANTIDAD DE PRODUCTOS
+    cantElementos();
+    // REMUEVO ELEMENTO DESDE CARRITO
+    removeProd();
+    // VACIO CARRITO
+    vaciarCarrito();
+    // OCULTO CARRITO
+    ocultarCarrito();
+  });
+};
 
 // Función para filtra productos por id
 let filtroProd = (arr, prod) => {
   return arr.find((el) => el.id == prod);
 };
-
 // Modifico botón de compra
 const habBtnCompra = () => {
   let btnCompra = document.querySelectorAll(".bag-btn");
@@ -37,109 +104,13 @@ const habBtnCompra = () => {
     }
   }
 };
-
-// Filtro por producto en index
-categoria.addEventListener("click", (e) => {
-  let fil = productos.filter((item) => item.ref === e.target.value);
-  if (fil != "") {
-    tarjetas.innerHTML = "";
-    generoCard(fil);
-    addProdCarrito();
+// Muestro/oculto btn para finalizar compra
+const accionPago = () => {
+  if (carrito.length != 0) {
+    btnPago.classList.remove("oculto");
   } else {
-    tarjetas.innerHTML = "";
-    generoCard(productos);
-    addProdCarrito();
+    btnPago.classList.add("oculto");
   }
-});
-
-// Función principal
-window.addEventListener("DOMContentLoaded", (e) => {
-  e.preventDefault();
-  // Recumero el Storage
-  if (carritoAlmacen) {
-    localStorage.getItem("carrito");
-    carrito = [...carritoAlmacen];
-    // Actualizo contador carrito
-    document.querySelector(".cart-items").innerHTML = carrito.length;
-  }
-  // Genero las card en el index
-  generoCard(productos);
-
-  // Agrego las card al objeto
-  addProdCarrito();
-  // Muestro el carrito y aplico sus respectivas funciones
-  mostrarCarrito();
-});
-
-// GENERO LAS CARD
-const generoCard = (articulos) => {
-  articulos.forEach((prod) => {
-    let cardProd = document.createElement("article");
-    cardProd.classList.add("prod");
-    cardProd.innerHTML = `
-      <div class="img-contenedor">
-        <img src=${prod.img} alt="Producto" class="prod-img"/>
-        <button class="bag-btn" data-id=${prod.id}>
-          <i class="fas fa-shopping-cart"></i>
-        Agregar a carrito
-        </button>
-      </div>
-      <h3>${prod.ref}</h3>
-      <h4>${prod.marca} ${prod.modelo}</h4>
-      <h4>$${prod.precio}</h4>
-      `;
-    tarjetas.appendChild(cardProd);
-  });
-  habBtnCompra()
-};
-
-// AGREGO PRODUCTOS AL OBJETO DEL CARRITO
-const addProdCarrito = () => {
-  let btnCompra = document.querySelectorAll(".bag-btn");
-  // Obtengo producto por ID
-  for (let i = 0; i < btnCompra.length; i++) {
-    btnCompra[i].addEventListener("click", (e) => {
-      e.preventDefault();
-      // Según ID almaceno el producto en el array
-      let idItem = btnCompra[i].getAttribute("data-id");
-      let prod = filtroProd(productos, idItem);
-      let itemComprado = {
-        id: prod.id,
-        categoria: prod.ref,
-        marca: prod.marca,
-        modelo: prod.modelo,
-        precio: prod.precio,
-        img: prod.img,
-        cantidad: 1,
-      };
-      carrito.push(itemComprado);
-      habBtnCompra()
-      document.querySelector(".cart-items").innerHTML = carrito.length;
-
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-    });
-  }
-};
-
-// MUESTRO CARRITO
-const mostrarCarrito = () => {
-  document.querySelector(".cart-btn").addEventListener("click", (e) => {
-    e.preventDefault();
-    // Muestro carro
-    document.querySelector(".bloque-carrito").classList.add("transparenteBcg");
-    document.querySelector(".carrito").classList.add("showCart");
-
-    // CARGO LA INFORMACIÓN DEL CARRITO
-    cargarCarrito();
-    // MODIFICO CANTIDAD DE PRODUCTOS
-    cantElementos();
-    // REMUEVO ELEMENTO DESDE CARRITO
-    removeProd();
-    // VACIO CARRITO
-    vaciarCarrito();
-    // OCULTO CARRITO
-    ocultarCarrito();
-  });
 };
 
 const cargarCarrito = () => {
@@ -228,6 +199,7 @@ const cantElementos = () => {
           document.querySelector(".cart-items").innerHTML = acum;
           // Habilito botones productos
           habBtnCompra();
+          accionPago();
           localStorage.setItem("carrito", JSON.stringify(carrito));
         }
       }
@@ -243,7 +215,6 @@ const removeProd = () => {
   for (let i = 0; i < removerProd.length; i++) {
     removerProd[i].addEventListener("click", (e) => {
       e.preventDefault();
-
       let idProd = removerProd[i].getAttribute("data-id");
       let indiceProd = carrito.indexOf(filtroProd(carrito, idProd));
       let saldoNuevo = 0;
@@ -262,6 +233,7 @@ const removeProd = () => {
       habBtnCompra();
       // Elimino un elemento del localStorage
       localStorage.setItem("carrito", JSON.stringify(carrito));
+      accionPago();
     });
   }
 };
@@ -297,5 +269,6 @@ const vaciarCarrito = () => {
     habBtnCompra();
     // Elimino todos los elementos del localStorage
     localStorage.clear();
+    accionPago();
   });
 };
