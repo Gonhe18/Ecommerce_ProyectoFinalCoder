@@ -5,7 +5,7 @@ const productos = [
     marca: "Redragon",
     modelo: "Yama K550 RGB White Mecánico",
     precio: 8170,
-    img: "../img/Teclado - Yama K550.png",
+    img: "./img/Teclado - Yama K550.png",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const productos = [
     marca: "Logitech",
     modelo: "G Pro Kda RGB",
     precio: 13990,
-    img: "../img/Teclado - G Pro Kda.png",
+    img: "./img/Teclado - G Pro Kda.png",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const productos = [
     marca: "Corsair",
     modelo: "K70 RGB MK.2 RapidFire",
     precio: 21490,
-    img: "../img/Teclado - K70.jpg",
+    img: "./img/Teclado - K70.jpg",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const productos = [
     marca: "Philips",
     modelo: "G403 RGB",
     precio: 1290,
-    img: "../img/Mouse - G403.png",
+    img: "./img/Mouse - G403.png",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const productos = [
     marca: "HperX",
     modelo: "PulseFire Core RGB",
     precio: 1595,
-    img: "../img/Mouse - PulseFire.jpg",
+    img: "./img/Mouse - PulseFire.jpg",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const productos = [
     marca: "Logitech",
     modelo: "G G502 LightSpeed",
     precio: 9990,
-    img: "../img/Mouse - G G502 LightSpeed.png",
+    img: "./img/Mouse - G G502 LightSpeed.png",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const productos = [
     marca: "HyperX",
     modelo: "Cloud Core Pc 7.1",
     precio: 8499,
-    img: "../img/Auricular - Cloud Core.jpg",
+    img: "./img/Auricular - Cloud Core.jpg",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const productos = [
     marca: "Corsair",
     modelo: "Virtuoso RGB",
     precio: 26990,
-    img: "../img/Auricular - Virtuoso.png",
+    img: "./img/Auricular - Virtuoso.png",
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ const productos = [
     marca: "Redragon",
     modelo: "H260 Hylas RGB",
     precio: 2999,
-    img: "../img/Auricular - Hylas.png",
+    img: "./img/Auricular - Hylas.png",
   },
   {
     id: 10,
@@ -77,7 +77,7 @@ const productos = [
     marca: "Gigabyte",
     modelo: "Aero 15 Oled I7 11800H RTX3080P",
     precio: 440990,
-    img: "../img/Notebook - Gigabyte.jpg",
+    img: "./img/Notebook - Gigabyte.jpg",
   },
   {
     id: 11,
@@ -85,7 +85,7 @@ const productos = [
     marca: "Banghó",
     modelo: "Max L5 I7 1051OU 15.6'",
     precio: 109990,
-    img: "../img/Notebook - Bangho.jpg",
+    img: "./img/Notebook - Bangho.jpg",
   },
   {
     id: 12,
@@ -93,7 +93,7 @@ const productos = [
     marca: "Lenovo",
     modelo: "CloudBook 2 en 1 Celeron N4020 10'",
     precio: 54990,
-    img: "../img/Notebook - Lenovo.jpg",
+    img: "./img/Notebook - Lenovo.jpg",
   },
   {
     id: 13,
@@ -101,7 +101,7 @@ const productos = [
     marca: "Samsung",
     modelo: "T350H FHD IPS 5ms 75Hz",
     precio: 25990,
-    img: "../img/Monitor - Samsung.png",
+    img: "./img/Monitor - Samsung.png",
   },
   {
     id: 14,
@@ -109,7 +109,7 @@ const productos = [
     marca: "Gigabyte",
     modelo: "Aorus FI27Q-PSA IPS QHD 1ms",
     precio: 139990,
-    img: "../img/Monitor - Gigabyte.jpg",
+    img: "./img/Monitor - Gigabyte.jpg",
   },
   {
     id: 15,
@@ -117,7 +117,7 @@ const productos = [
     marca: "LG",
     modelo: "UltraFear 32GN500-B FullHD 165Hz 1ms",
     precio: 67999,
-    img: "../img/Monitor - LG.png",
+    img: "./img/Monitor - LG.png",
   },
 ];
 
