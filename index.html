@@ -15,7 +15,8 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="./css/estilos.css" />
+    <!-- <link rel="stylesheet" href="./css/estilos.css" /> -->
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <!--Menú navegación-->
@@ -47,26 +48,25 @@
       <div class="titulo-prod">
         <h2 id="listaProductos">Productos</h2>
       </div>
-      <div class="card-prod">
-        <!-- Productos -->
-      </div>
-    </section>
-
-    <!--Filtro-->
-    <section class="filter">
-      <div class="grid">
+      <!--Filtro-->
+      <section class="filter">
         <div class="category">
           <select id="category">
             <option value="">Mostrar todo</option>
             <option value="Teclado">Teclado</option>
             <option value="Mouse">Mouse</option>
-            <option value="Auriculares">Auriculares</option>
+            <option value="Auricular">Auriculares</option>
             <option value="Monitor">Monitor</option>
             <option value="Notebook">Notebook</option>
           </select>
         </div>
+      </section>
+      <div class="card-prod">
+        <!-- Productos -->
       </div>
     </section>
+
+    
 
     <!-- Sección carrito -->
     <section class="bloque-carrito">
@@ -80,11 +80,16 @@
         </div>
         <div class="carrito-footer">
           <h3>Total: $<span class="total-carrito">0</span></h3>
-          <button class="limpiar-carro banner-btn">Vaciar Carrito</button>
-          <button class="btn-pago banner-btn oculto"><a href="./pago.html">Finalizar compra</a></button>
+          <button class="limpiar-carro footer-btn">Vaciar Carrito</button>
+          <button class="btn-pago footer-btn oculto"><a href="./pago.html">Finalizar compra</a></button>
         </div>
       </div>
     </section>
+
+    <div class="up">
+      <i class="fas fa-chevron-circle-up"></i>
+    </div>
+
 
     <!-- Footer -->
     <footer>
@@ -93,6 +98,9 @@
 
     <!-- JS -->
     <script src="./js/script.js" type="module"></script>
- 
+    <!-- Scroll up -->
+    <script src="../js/scrollUp.js"></script>
   </body>
 </html>
+
+
