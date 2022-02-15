@@ -15,14 +15,13 @@ export const generoCard = (articulos) => {
     cardProd.classList.add("prod");
     cardProd.innerHTML = `
       <div class="img-contenedor">
-        <img src=${prod.img} alt="Producto" class="prod-img"/>
+        <img src='${prod.img}' alt="Producto" class="prod-img"/>
         <button class="bag-btn" data-id=${prod.id}>
           <i class="fas fa-shopping-cart"></i>
         Agregar a carrito
         </button>
       </div>
-      <h3>${prod.ref}</h3>
-      <h4>${prod.marca} ${prod.modelo}</h4>
+      <h3>${prod.marca} ${prod.modelo}</h3>
       <h4>$${prod.precio}</h4>
       `;
     tarjetas.appendChild(cardProd);
@@ -66,7 +65,7 @@ export const mostrarCarrito = () => {
     document.querySelector(".carrito").classList.add("showCart");
     // CARGO LA INFORMACIÓN DEL CARRITO
     cargarCarrito();
-
+    // HABILITO BOTÓN PAGO (solo si existen elementos en carrito)
     accionPago();
     // MODIFICO CANTIDAD DE PRODUCTOS
     cantElementos();
@@ -98,19 +97,17 @@ const habBtnCompra = () => {
     } else {
       btnCompra[i].disabled = true;
       btnCompra[i].innerHTML = `
-      <i class="fa-solid fa-check-to-slot"></i>
-      En el carrito
+        <i class="fa-solid fa-check-to-slot"></i>
+        En el carrito
       `;
     }
   }
 };
 // Muestro/oculto btn para finalizar compra
 const accionPago = () => {
-  if (carrito.length != 0) {
-    btnPago.classList.remove("oculto");
-  } else {
-    btnPago.classList.add("oculto");
-  }
+  carrito.length != 0
+    ? btnPago.classList.remove("oculto")
+    : btnPago.classList.add("oculto");
 };
 
 const cargarCarrito = () => {
@@ -121,18 +118,18 @@ const cargarCarrito = () => {
     templateCarrito.classList.add("carrito-item");
     templateCarrito.setAttribute("data-id", `${item.id}`);
     templateCarrito.innerHTML = `
-  <img src=${item.img} alt="prod"/>
-  <div>
-  <h4>${item.categoria} - ${item.marca} ${item.modelo}</h4>
-  <h5>$${item.precio}</h5>
-  <span class="remove-item" data-id=${item.id}>Remove<span>
-  </div>
-  <div class='contador'>
-  <i class="fas fa-chevron-up aumentar" data-up=${item.id} ></i>
-  <p class="cant-item">${item.cantidad}</p>
-  <i class="fas fa-chevron-down disminuir" data-down=${item.id}></i>
-  </div>
-  `;
+      <img src='${item.img}' alt="prod"/>
+      <div>
+      <h4>${item.categoria} - ${item.marca} ${item.modelo}</h4>
+      <h5>$${item.precio}</h5>
+      <span class="remove-item" data-id=${item.id}>Remove<span>
+      </div>
+      <div class='contador'>
+      <i class="fas fa-chevron-up aumentar" data-up=${item.id} ></i>
+      <p class="cant-item">${item.cantidad}</p>
+      <i class="fas fa-chevron-down disminuir" data-down=${item.id}></i>
+      </div>
+    `;
     visualCarrito.appendChild(templateCarrito);
     saldo += item.precio * item.cantidad;
   });
@@ -145,12 +142,14 @@ const cantElementos = () => {
   let contador = document.querySelectorAll(".contador");
   let saldo = parseInt(document.querySelector(".total-carrito").textContent);
   let acum = parseInt(document.querySelector(".cart-items").textContent);
+  let totalProductos = document.querySelectorAll(".carrito-item");
 
-  contador.forEach((item) => {
-    item.addEventListener("click", (e) => {
+  for (let i = 0; i < contador.length; i++) {
+    contador[i].addEventListener("click", (e) => {
       let aumentoProd = filtroProd(carrito, e.target.dataset.up);
       let disminProd = filtroProd(carrito, e.target.dataset.down);
       let indiceProd;
+
       if (e.target.classList.contains("aumentar")) {
         indiceProd = carrito.indexOf(aumentoProd);
         // Almaceno la cantidad de prod en el objeto
@@ -185,26 +184,28 @@ const cantElementos = () => {
           // Actualizo contador carrito
           document.querySelector(".cart-items").innerHTML = acum;
         } else {
+          // Remuevo elemento del Array
+          carrito.splice(indiceProd, 1);
           // Acumulo el saldo aumentando a medida que agrego prod
           saldo -= disminProd.precio;
           // Almaceno la cantidad total de prod
           acum--;
-          // Remuevo elemento del Array
-          carrito.splice(indiceProd, 1);
-          // Lo elimino desde el detalle de compra
-          // ???????????????
+          // Elimino elemento de la vista del carrito
+          visualCarrito.removeChild(totalProductos[i]);
           // Actualizo saldo
           document.querySelector(".total-carrito").innerHTML = saldo;
           // Actualizo contador carrito
           document.querySelector(".cart-items").innerHTML = acum;
           // Habilito botones productos
           habBtnCompra();
+          // Oculto btn finalizar compra
           accionPago();
+          // Actualizo carrito en lS
           localStorage.setItem("carrito", JSON.stringify(carrito));
         }
       }
     });
-  });
+  }
 };
 
 // REMUEVO ELEMENTO DESDE CARRITO
@@ -222,6 +223,7 @@ const removeProd = () => {
       carrito.splice(indiceProd, 1);
       // Lo elimino desde el detalle de compra
       visualCarrito.removeChild(totalProductos[i]);
+      console.log(totalProductos[i]);
       // actualizo saldo
       for (let item of carrito) {
         saldoNuevo += item.precio;
@@ -231,9 +233,10 @@ const removeProd = () => {
       document.querySelector(".cart-items").innerHTML = carrito.length;
       // Habilito botones de productos
       habBtnCompra();
-      // Elimino un elemento del localStorage
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+      // Oculto el btn finalizar compra en caso de que no existan prod
       accionPago();
+      // Realizo nueva copia al localStorage
+      localStorage.setItem("carrito", JSON.stringify(carrito));
     });
   }
 };
@@ -267,8 +270,9 @@ const vaciarCarrito = () => {
     document.querySelector(".cart-items").innerHTML = "0";
     // Habilito botones productos
     habBtnCompra();
+    // Oculto btn finalizar compra
+    accionPago();
     // Elimino todos los elementos del localStorage
     localStorage.clear();
-    accionPago();
   });
 };

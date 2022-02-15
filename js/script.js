@@ -10,18 +10,15 @@ export let carrito = [];
 let tarjetas = document.querySelector(".card-prod");
 let categoria = document.getElementById("category");
 // Recupero el localStorage
-let carritoAlmacen = JSON.parse(localStorage.getItem("carrito"));
+let carritoAlmacen = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Función principal
 window.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   // Si existe Storage lo recupero
-  if (carritoAlmacen) {
-    localStorage.getItem("carrito");
-    carrito = [...carritoAlmacen];
-    // Actualizo contador carrito
-    document.querySelector(".cart-items").innerHTML = carrito.length;
-  }
+  carrito = [...carritoAlmacen];
+  // Actualizo contador carrito
+  document.querySelector(".cart-items").innerHTML = carrito.length;
   // Genero las card en el index
   generoCard(productos);
   // Agrego las card al objeto

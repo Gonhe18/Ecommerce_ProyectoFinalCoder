@@ -19,7 +19,7 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="./css/estilos.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <!--Menú navegación-->
@@ -38,68 +38,78 @@
         </div>
       </div>
     </nav>
-    <h2>Detalle Compra</h2>
-    <!-- Detalle de la compra -->
-    <section class="titulo-detalle">
-      <div class="tabla">####</div>
-      <div class="tabla">Cantidad</div>
-      <div class="tabla">Categoría</div>
-      <div class="tabla">Marca</div>
-      <div class="tabla">Modelo</div>
-      <div class="tabla">Precio</div>
-    </section>
-    <section class="detalleCompra">
-      <!-- Detalle compra -->
-    </section>
-    <section class="footer-detalle">
-      <div class="seguirComprando">
-        <button class="btn-detalle banner-btn">
-          <a href="./index.html">Seguir comprando</a>
-        </button>
-      </div>
+    <div class="pago">
+      <h2>Detalle Compra</h2>
+      <!-- Detalle de la compra -->
+      <section class="titulo-detalle">
+        <div class="tabla">####</div>
+        <div class="tabla">Cantidad</div>
+        <div class="tabla">Categoría</div>
+        <div class="tabla">Marca</div>
+        <div class="tabla">Modelo</div>
+        <div class="tabla">Precio</div>
+      </section>
 
-      <div class="medioPago">
-        <div class="tipoPago">
-          <div>
-            <input type="radio" name="efectivo" id="efectivo"/>
-            <label for="efectivo">Efectivo</label>
-          </div>
-          <div>
-            <input type="radio" name="credito" id="credito" />
-            <label for="credito">Tarjeta Crédito</label>
-          </div>
-          <div>
-            <input type="radio" name="debito" id="debito" />
-            <label for="debito">Tarjeta Débito</label>
-          </div>
-        </div>
-        <div class="mjsDescuento">
-          <p>Por Abonar en efectivo tiene un descuento del 50%</p>
-        </div>
-      </div>
+      <section class="detalleCompra">
+        <!-- Detalle compra -->
+      </section>
 
-      <div class="resumen">
-        <div class="detalleResumen">
-          <h4>Cant. Productos</h4>
-          <div class="cantProd">1</div>
+      <section class="footer-detalle">
+        <div class="seguirComprando">
+          <button class="btn-detalle footer-btn">
+            <a href="./index.html" class="contCompra">Seguir comprando</a>
+          </button>
         </div>
-        <div class="detalleResumen">
-          <h4>Subtotal</h4>
-          <div class="subTotal">5000</div>
-        </div>
-        <div class="detalleResumen">
-          <h4>Descuento</h4>
-          <div class="descuento">1000</div>
-        </div>
-        <div class="detalleResumen">
-          <h4>Total</h4>
-          <div class="total">1000</div>
-        </div>
-      </div>
-    </section>
 
+        <div class="medioPago">
+          <div class="tipoPago">
+            <div>
+              <input type="radio" name="efectivo" id="efectivo"/>
+              <label for="efectivo">Efectivo</label>
+            </div>
+            <div>
+              <input type="radio" name="credito" id="credito" />
+              <label for="credito">Tarjeta Crédito</label>
+            </div>
+            <div>
+              <input type="radio" name="debito" id="debito" />
+              <label for="debito">Tarjeta Débito</label>
+            </div>
+          </div>
+          <div class="mjsDescuento">
+            <p>Por Abonar en efectivo tiene un descuento del 50%</p>
+          </div>
+        </div>
+
+        <div class="resumen">
+          <div class="detalleResumen">
+            <h4>Cant. Productos</h4>
+            <div class="cantProd refDetalle">1</div>
+          </div>
+          <div class="detalleResumen">
+            <h4>Subtotal</h4>
+            <div class="subTotal refDetalle">$5000</div>
+          </div>
+          <div class="detalleResumen">
+            <h4>Descuento</h4>
+            <div class="descuento refDetalle">$1000</div>
+          </div>
+          <hr>
+          <div class="detalleResumen">
+            <h4>Total</h4>
+            <div class="total refDetalle">$1000</div>
+          </div>
+        </div>
+      </section>
+  </div>
     <section></section>
 
+    <!-- Footer -->
+    <footer>
+      <p>Creado por &copy Gonzalo Bazzani</p>
+    </footer>
+    
+    <!-- JS -->
     <script src="./js/pago.js" type="module"></script>
   </body>
 </html>
