@@ -1,60 +1,65 @@
 /* Navbar */
-body{
-    .navbar {
-        background: $navy;
-        position: sticky;
-        top: 0;
-        height: 60px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        z-index: 1;
-        
-        .navbar-center {
-          width: 100%;
-          max-width: 1170px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 1.5rem;
-          .nav-icon {
-            font-size: 1.5rem;
-            .logo_nav {
-              width: 40%;
+body {
+  .navbar {
+    background: $navy;
+    position: sticky;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+
+    .navbar-center {
+      width: 100%;
+      max-width: 1170px;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      .nav-icon {
+        height: 100%;
+        .logo_nav {
+          width: 60px;
+          padding: 5px 0;
+        }
+      }
+      h1 {
+        color: $white;
+        font-size: $principal;
+        font-family: $titulos;
+        text-align: center;
+        padding-top: 10px;
+        .bandera {
+          color: #86c6f4;
+        }
+      }
+      .cart-btn {
+        position: relative;
+        cursor: pointer;
+        .nav-icon {
+          .fa-shopping-cart {
+            @extend .icon;
+            color: $orange;
           }
-          }
-          h1{
-              color: $white;
-              font-size: 3rem;
-              text-align: center;
-          }
-          .cart-btn {
-            position: relative;
-            cursor: pointer;
-            .nav-icon {
-              .fa-shopping-cart{
-                color: $orange;
-                margin-right: 0.5rem;
-                font-size: 2rem;
-              }
-            }
-            .cart-items {
-                position: absolute;
-                top: -8px;
-                right: -8px;
-                background: $white;
-                padding: 0 5px;
-                border-radius: 30%;
-                color: $black;
-                font-weight: bold;
-              }
+          .fa-hand-holding-dollar {
+            @extend .icon;
+            color: #8b9a46;
           }
         }
-      }  
+        .cart-items {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background: $white;
+          padding: 0 5px;
+          border-radius: 30%;
+          color: $black;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
-
-  
-  
-  
-  

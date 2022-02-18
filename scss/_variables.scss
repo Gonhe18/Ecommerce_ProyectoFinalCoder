@@ -3,3 +3,19 @@ $navy: #1a1d36;
 $white: #fff;
 $black: #000;
 $orange: #FFAB4C;
+
+// Fonts
+$titulos: 'Teko', sans-serif;
+$titSecundario: 'Nunito Sans', sans-serif;
+$contenido: 'Roboto', sans-serif;
+
+// Tamaño
+$principal: 4rem;
+$secundario: 2rem;
+$textContenido: 1.2rem;
+
+// Icon navbar
+.icon{
+   margin-right: 0.5rem;
+   font-size: $secundario;
+}

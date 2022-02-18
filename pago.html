@@ -9,7 +9,6 @@
       href="./img/logo-pestaña.ico"
       type="image/x-icon"
     />
-
     <!--icons-->
     <link
       rel="stylesheet"
@@ -18,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -41,17 +40,18 @@
     <div class="pago">
       <h2>Detalle Compra</h2>
       <!-- Detalle de la compra -->
-      <section class="titulo-detalle">
-        <div class="tabla">####</div>
-        <div class="tabla">Cantidad</div>
-        <div class="tabla">Categoría</div>
-        <div class="tabla">Marca</div>
-        <div class="tabla">Modelo</div>
-        <div class="tabla">Precio</div>
-      </section>
-
-      <section class="detalleCompra">
-        <!-- Detalle compra -->
+      <section class="detalle">
+        <div class="titulo-detalle">
+          <h3>####</h3>
+          <h3>Cantidad</h3>
+          <h3>Categoría</h3>
+          <h3>Marca</h3>
+          <h3>Modelo</h3>
+          <h3>Precio</h3> 
+        </div>
+        <div class="detalleCompra">
+          <!-- Detalle compra -->
+        </div>
       </section>
 
       <section class="footer-detalle">
@@ -64,45 +64,46 @@
         <div class="medioPago">
           <div class="tipoPago">
             <div>
-              <input type="radio" name="efectivo" id="efectivo"/>
+              <input type="radio" name="tipoPago" id="ef"/>
               <label for="efectivo">Efectivo</label>
             </div>
             <div>
-              <input type="radio" name="credito" id="credito" />
+              <input type="radio" name="tipoPago" id="tc" />
               <label for="credito">Tarjeta Crédito</label>
             </div>
             <div>
-              <input type="radio" name="debito" id="debito" />
+              <input type="radio" name="tipoPago" id="deb" />
               <label for="debito">Tarjeta Débito</label>
             </div>
           </div>
-          <div class="mjsDescuento">
-            <p>Por Abonar en efectivo tiene un descuento del 50%</p>
+          <div class="mjsDescuento"><p>Elige un medio de pago para continuar</p>
           </div>
         </div>
 
         <div class="resumen">
           <div class="detalleResumen">
             <h4>Cant. Productos</h4>
-            <div class="cantProd refDetalle">1</div>
+            <div class="cantProd refDetalle">0</div>
           </div>
           <div class="detalleResumen">
             <h4>Subtotal</h4>
-            <div class="subTotal refDetalle">$5000</div>
+            <div class="subTotal refDetalle">0</div>
           </div>
           <div class="detalleResumen">
             <h4>Descuento</h4>
-            <div class="descuento refDetalle">$1000</div>
+            <div class="descuento refDetalle">0</div>
           </div>
           <hr>
           <div class="detalleResumen">
             <h4>Total</h4>
-            <div class="total refDetalle">$1000</div>
+            <div class="total refDetalle">0</div>
           </div>
         </div>
       </section>
-  </div>
-    <section></section>
+      <section class="btn-finalizar oculto">
+        <button class='footer-btn btnPago'> Pagar </button>
+      </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -111,5 +112,7 @@
     
     <!-- JS -->
     <script src="./js/pago.js" type="module"></script>
+    <!-- SweetAlert2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
