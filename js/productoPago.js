@@ -124,17 +124,17 @@ const productos = [
 // Array de objetos con los medios de pagos y respectivos descuentos.
 const medioDePago = [
   {
-    ref: "EF",
+    ref: "ef",
     medioPago: "Efectivo",
     descuento: 25,
   },
   {
-    ref: "TC",
+    ref: "tc",
     medioPago: "Tarjeta de Crédito",
     descuento: 15,
   },
   {
-    ref: "DEB",
+    ref: "deb",
     medioPago: "Tarjeta de Débito",
     descuento: 10,
   },

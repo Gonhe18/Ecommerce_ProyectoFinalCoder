@@ -3,5 +3,5 @@ window.onscroll = function () {
   up.classList.toggle("show", window.scrollY >= 500);
 };
 up.onclick = function () {
-  window.scrollTo({ behavior: "smooth", top: 520 });
+  window.scrollTo({ behavior: "smooth", top: 650 });
 };

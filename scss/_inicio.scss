@@ -1,43 +1,50 @@
 /* Inicio */
-body{
-    .inicio {
-        min-height: calc(100vh - 60px);
-        background: url("../img/fondo-index.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+body {
+  .inicio {
+    min-height: calc(100vh - 60px);
+    background: url("../img/fondo-index.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .banner {
-          text-align: center;
-          background: rgba(255, 255, 255, 0.8);
-          display: inline-block;
-          padding: 2rem 4rem;
-          .banner-title {
-            font-size: 3.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            margin-bottom: 3rem;
-          }
-          .banner-btn {
-            padding: 1rem 3rem;
-            background-color: orange;
-            border: 1px solid orange;
-            transition: all 0.3s linear;
-            cursor: pointer;
-            a {
-              text-transform: uppercase;
-              letter-spacing: 0.1rem;
-              font-size: 1rem;
-              text-decoration: none;
-              color: #000;
-            }
-            &:hover {
-              background: transparent;
-            }
+    .banner {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      display: inline-block;
+      padding: 2rem 4rem;
+      .banner-title {
+        font-size: $principal;
+        font-family: $titSecundario;
+        letter-spacing: 0.1rem;
+        margin-bottom: 2rem;
+      }
+      .banner-btn {
+        padding: 1rem 3rem;
+        background-color: $navy;
+        border: 1px solid $navy;
+        transition: all 0.3s linear;
+        cursor: pointer;
+        a {
+          text-transform: uppercase;
+          letter-spacing: 0.1rem;
+          font-size: $textContenido;
+          font-family: $titSecundario;
+          text-decoration: none;
+          color: $white;
+          &:hover {
+            color: $black;
+            font-weight: bold;
           }
         }
+        &:hover {
+          background: transparent;
+          color: $black;
+          background: #aaa492;
+        }
       }
+    }
+  }
 }
