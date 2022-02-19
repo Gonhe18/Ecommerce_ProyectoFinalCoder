@@ -1,10 +1,197 @@
-@media screen and (min-width: 768px) {
-    body{
-        .bloque-carrito{
-            .carrito {
-                width: 30vw;
-                min-width: 450px;
-            }
+@media screen and (max-width: 560px) {
+  body {
+    .navbar {
+      .navbar-center {
+        justify-content: space-between;
+        padding: 0 1rem;
+        h1 {
+          font-size: $principal - 0.5;
         }
+      }
+    }
+    .inicio {
+      .banner {
+        padding: 2rem 3rem;
+        .banner-title {
+          font-size: $secundario + 0.5;
+        }
+        .banner-btn {
+          a {
+            font-size: $textContenido - 0.2;
+          }
+        }
+      }
+    }
+    .productos {
+      .titulo-prod {
+        h2 {
+          font-size: $secundario;
+        }
+      }
+      .card-prod {
+        width: 100%;
+        .prod {
+          width: 80%;
+          margin: auto;
+          .tit-contenedor {
+            h3 {
+              font-size: $secundario - 0.7;
+            }
+          }
+        }
+      }
+      .filter {
+        .category {
+          #category {
+            width: 80%;
+          }
+        }
+      }
+    }
+    .bloque-carrito {
+      .carrito {
+        .contenido-carrito {
+          .carrito-item {
+            column-gap: 0.85rem;
+            h4 {
+              font-size: $textContenido - 0.3;
+            }
+            h5 {
+              font-size: $textContenido - 0.25;
+            }
+          }
+        }
+        .carrito-footer {
+          h3 {
+            font-size: $contenido;
+          }
+        }
+      }
+    }
+
+    .pago {
+      .detalle {
+        .titulo-detalle {
+          h3 {
+            font-size: $secundario - 1;
+            padding: 10px 5px;
+          }
+        }
+      }
+      .detalleCompra {
+        .conjuntoProd {
+          .img-producto {
+            img {
+              padding: 0 2px;
+            }
+          }
+          .cant-producto {
+            .modifProd {
+              .cant-item {
+                padding: 0 2px;
+              }
+            }
+            .fa-chevron-up,
+            .fa-chevron-down {
+              padding: 0;
+            }
+          }
+          h4 {
+            font-size: $textContenido - 0.35;
+          }
+        }
+      }
+      .footer-detalle {
+        flex-flow: column wrap;
+        .seguirComprando {
+          width: 70%;
+          margin: 10px;
+        }
+        .medioPago {
+          width: 100%;
+          flex-flow: column wrap;
+          border-left: none;
+          .tipoPago {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-bottom: 10px;
+            div {
+              display: flex;
+              flex-direction: column;
+              input {
+                margin: auto;
+              }
+              label {
+                font-size: $textContenido;
+              }
+            }
+          }
+          .mjsDescuento {
+            width: 100%;
+            p {
+              font-size: $secundario - 0.5;
+            }
+          }
+        }
+        .resumen {
+          width: 100%;
+          border-top: 1px solid #000;
+          margin-top: 10px;
+          padding: 20px 0;
+          .detalleResumen {
+            padding: 5px 0;
+            border-left: none;
+            justify-content: space-around;
+          }
+        }
+      }
+      .btn-finalizar {
+        .footer-btn {
+          width: 70%;
+          margin: 5px;
+        }
+      }
     }
   }
+}
+
+@media screen and (min-width: 561px){
+body{
+    .productos {
+        .titulo-prod {
+          h2 {
+            font-size: $secundario + 1.2;
+          }
+        }
+        .card-prod {
+          width: 100%;
+          display: flex;
+          flex-flow: row wrap;
+          .prod {
+            width: 360px;
+            margin: auto;
+            .tit-contenedor {
+              h3 {
+                font-size: $secundario - 0.7;
+              }
+            }
+          }
+        }
+      }
+}
+
+
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    .bloque-carrito {
+      .carrito {
+        width: 30vw;
+        min-width: 450px;
+      }
+    }
+  }
+}
