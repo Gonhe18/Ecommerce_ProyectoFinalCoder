@@ -7,7 +7,6 @@ body {
         text-align: center;
         font-size: $principal;
         font-family: $titulos;
-        text-transform: capitalize;
         letter-spacing: 1rem;
       }
     }
@@ -46,7 +45,6 @@ body {
           &:hover .prod-img {
             opacity: 0.5;
           }
-
           .bag-btn {
             position: absolute;
             top: 70%;
