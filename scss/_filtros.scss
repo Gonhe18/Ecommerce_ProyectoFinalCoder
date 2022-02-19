@@ -1,16 +1,18 @@
 /* Filtro */
 body {
-  .filter {
-    width: 100%;
-    text-align: center;
-    .category {
-      margin: 1rem 0 3rem 0;
-      #category {
-        border-radius: 10px;
-        box-shadow: 2px 4px 10px $black;
-        width: 20vw;
-        height: 25px;
-        text-align: center;
+  .productos {
+    .filter {
+      width: 100%;
+      text-align: center;
+      .category {
+        margin: 1rem 0 3rem 0;
+        #category {
+          border-radius: 10px;
+          box-shadow: 2px 4px 10px $black;
+          width: 30%;
+          height: 25px;
+          text-align: center;
+        }
       }
     }
   }
