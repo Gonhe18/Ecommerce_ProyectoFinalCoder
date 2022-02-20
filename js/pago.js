@@ -165,27 +165,26 @@ const finalizarPago = () => {
     e.preventDefault();
 
     Swal.fire({
-      icon: "question",
+      html: '<img src="../img/icono-pago.png" style= "width: 120px"/>',
       title: "¿Desea finalizar la compra?",
       text: "Confirme el pago o siga comprando!!",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#357C3C",
       confirmButtonText: "Pagar",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#B33030",
       cancelButtonText: "Seguir comprando",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          icon: "success",
-          title: "Felicitaciones!!",
-          text: "Realizaste la compra con éxito",
+          html: '<img src="../img/icon-pago-exitoso.png" style= "width: 120px"/>',
+          title: "Pago realizado con éxito!!",
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true,
           allowOutsideClick: false,
           allowEscapeKey: false,
         }).then(function () {
-          window.location = "../index.html";
+          window.location = "./index.html";
         });
         // Elimino todos los elementos del localStorage
         localStorage.clear();
@@ -198,7 +197,7 @@ const finalizarPago = () => {
 const carritoVacio = () => {
   if (carrito.length === 0) {
     Swal.fire({
-      icon: "warning",
+      iconHtml: '<i class="fas fa-shopping-cart"></i>',
       title: "Carrito vacio",
       timerProgressBar: true,
       timer: 1500,

@@ -55,10 +55,10 @@ const cantProdCarrito = () => {
 const alertSeleccionProd = () => {
   Toastify({
     text: "Producto agregado al carrito!!",
-    duration: 3000,
+    duration: 1500,
     gravity: "top",
-    position: "left",
-    stopOnFocus: true,
+    position: "right",
+    stopOnFocus: false,
     style: {
       background: "##56ab2f",
       background: "-webkit-linear-gradient(to right, #a8e063, #56ab2f)",
@@ -66,7 +66,8 @@ const alertSeleccionProd = () => {
       color: "#000",
       fontWeight: "bold",
       borderRadius: "10px",
-      marginTop: "40px",
+      marginTop: "20px",
+      fontSize: '0.9rem',
     },
   }).showToast();
 };
@@ -78,7 +79,7 @@ export const generoCard = (articulos) => {
     cardProd.classList.add("prod");
     cardProd.innerHTML = `
       <div class="img-contenedor">
-        <img src='${prod.img}' alt="Producto" class="prod-img"/>
+        <img src='${prod.img}' alt="Producto" class="prod-img" class="icon-pago"/>
         <button class="bag-btn" data-id=${prod.id}>
           <i class="fas fa-shopping-cart"></i>
         Agregar a carrito
