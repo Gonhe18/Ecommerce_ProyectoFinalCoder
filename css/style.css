@@ -299,9 +299,13 @@ body .bloque-carrito {
       font-family: "Nunito Sans", sans-serif;
       text-align: center;
       margin-bottom: 2rem; }
+    body .bloque-carrito .carrito .carrito-vacio {
+      font-size: 1.7rem;
+      font-family: "Nunito Sans", sans-serif;
+      text-align: center; }
     body .bloque-carrito .carrito .contenido-carrito .carrito-vacio {
       font-size: 2rem;
-      font-family: "Nunito Sans", sans-serif;
+      font-family: "Roboto", sans-serif;
       text-align: center; }
     body .bloque-carrito .carrito .contenido-carrito .carrito-item {
       display: grid;
