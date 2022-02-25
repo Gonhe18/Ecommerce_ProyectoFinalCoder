@@ -9,7 +9,7 @@ export let carrito = [];
 let carritoAlmacen = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // PRODUCTOS / CARRITO
-window.addEventListener("DOMContentLoaded", (e) => {
+window.addEventListener("load", (e) => {
   e.preventDefault();
   // Si existe Storage lo recupero
   carrito = [...carritoAlmacen];
@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 });
 
 // PAGOS
-window.addEventListener("DOMContentLoaded", (e) => {
+window.addEventListener("load", (e) => {
   e.preventDefault();
   // Proceso de pago
   procesoPago(carrito)

@@ -95,6 +95,19 @@ body {
           margin: 5px;
         }
       }
+      .termCompra{
+        width: 50%;
+        padding: 5px 10px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        .btn-compra{
+          @extend .btn;
+          width: 50%;
+          padding: 10px;
+          margin: 5px;
+        }
+      }
       .medioPago {
         width: 50%;
         padding: 5px 10px;
@@ -153,8 +166,8 @@ body {
           }
         }
       }
-      .invisible {
-        visibility: hidden;
+      .oculto {
+        display: none;
       }
     }
 

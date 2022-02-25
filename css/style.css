@@ -29,20 +29,20 @@ body .pago .detalleCompra .conjuntoProd .cant-producto .modifProd .fa-chevron-do
     border-radius: 50%;
     padding: 3px; }
 
-.btn, body .bloque-carrito .carrito .carrito-footer .footer-btn, body .pago .footer-detalle .seguirComprando .btn-detalle, body .pago .btn-finalizar .footer-btn {
+.btn, body .bloque-carrito .carrito .carrito-footer .footer-btn, body .pago .footer-detalle .seguirComprando .btn-detalle, body .pago .footer-detalle .termCompra .btn-compra, body .pago .btn-finalizar .footer-btn {
   font-size: 1rem;
   background-color: #1a1d36;
   border: 1px solid #1a1d36;
   color: #fff;
   transition: all 0.3s linear;
   cursor: pointer; }
-  .btn:hover, body .bloque-carrito .carrito .carrito-footer .footer-btn:hover, body .pago .footer-detalle .seguirComprando .btn-detalle:hover, body .pago .btn-finalizar .footer-btn:hover {
+  .btn:hover, body .bloque-carrito .carrito .carrito-footer .footer-btn:hover, body .pago .footer-detalle .seguirComprando .btn-detalle:hover, body .pago .footer-detalle .termCompra .btn-compra:hover, body .pago .btn-finalizar .footer-btn:hover {
     background: #aaa492;
     color: #000; }
-  .btn a, body .bloque-carrito .carrito .carrito-footer .footer-btn a, body .pago .footer-detalle .seguirComprando .btn-detalle a, body .pago .btn-finalizar .footer-btn a {
+  .btn a, body .bloque-carrito .carrito .carrito-footer .footer-btn a, body .pago .footer-detalle .seguirComprando .btn-detalle a, body .pago .footer-detalle .termCompra .btn-compra a, body .pago .btn-finalizar .footer-btn a {
     text-decoration: none;
     color: #fff; }
-    .btn a:hover, body .bloque-carrito .carrito .carrito-footer .footer-btn a:hover, body .pago .footer-detalle .seguirComprando .btn-detalle a:hover, body .pago .btn-finalizar .footer-btn a:hover {
+    .btn a:hover, body .bloque-carrito .carrito .carrito-footer .footer-btn a:hover, body .pago .footer-detalle .seguirComprando .btn-detalle a:hover, body .pago .footer-detalle .termCompra .btn-compra a:hover, body .pago .btn-finalizar .footer-btn a:hover {
       color: #000; }
 
 * {
@@ -73,19 +73,16 @@ body .navbar {
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem; }
-    body .navbar .navbar-center .nav-icon {
-      height: 100%; }
-      body .navbar .navbar-center .nav-icon .logo_nav {
-        width: 60px;
-        padding: 5px 0; }
-    body .navbar .navbar-center h1 {
-      color: #fff;
-      font-size: 4rem;
-      font-family: "Teko", sans-serif;
-      text-align: center;
-      padding-top: 10px; }
-      body .navbar .navbar-center h1 .bandera {
-        color: #86c6f4; }
+    body .navbar .navbar-center a {
+      text-decoration: none; }
+      body .navbar .navbar-center a h1 {
+        color: #fff;
+        font-size: 4rem;
+        font-family: "Teko", sans-serif;
+        text-align: center;
+        padding-top: 10px; }
+        body .navbar .navbar-center a h1 .bandera {
+          color: #86c6f4; }
     body .navbar .navbar-center .cart-btn {
       position: relative;
       cursor: pointer; }
@@ -419,6 +416,16 @@ body .pago .footer-detalle {
       width: 85%;
       padding: 10px;
       margin: 5px; }
+  body .pago .footer-detalle .termCompra {
+    width: 50%;
+    padding: 5px 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center; }
+    body .pago .footer-detalle .termCompra .btn-compra {
+      width: 50%;
+      padding: 10px;
+      margin: 5px; }
   body .pago .footer-detalle .medioPago {
     width: 50%;
     padding: 5px 10px;
@@ -465,8 +472,8 @@ body .pago .footer-detalle {
         font-size: 1.2rem; }
       body .pago .footer-detalle .resumen .detalleResumen .descuento {
         font-weight: bold; }
-  body .pago .footer-detalle .invisible {
-    visibility: hidden; }
+  body .pago .footer-detalle .oculto {
+    display: none; }
 
 body .pago .btn-finalizar {
   text-align: center; }

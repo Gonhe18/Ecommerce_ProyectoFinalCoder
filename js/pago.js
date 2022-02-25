@@ -15,10 +15,15 @@ const btnPago = document.querySelector(".btnPago");
 let carrito = JSON.parse(localStorage.getItem("carrito"));
 
 export const procesoPago = (carrito) => {
+  // Muestro productos en carrito
   detalleCompra(carrito);
+  // Aumento/disminuyo prod
   modifElement();
+  // Elimino prod del carrito
   eliminarProd();
+  // Obtengo medios de pago desde API
   mediosDePago();
+  // Habilito btn para finalizar compra
   finCompra();
 };
 
@@ -26,6 +31,7 @@ export const procesoPago = (carrito) => {
 const mediosDePago = async () => {
   const resp = await fetch("./api/medioPago.json");
   const pago = await resp.json();
+  // Genero alerta para finalizar pago
   finalizarPago(pago);
 };
 
@@ -34,6 +40,7 @@ const detalleCompra = (products) => {
   let detalle = document.querySelector(".detalleCompra");
   products.forEach((item) => {
     let bloqueProd = document.createElement("div");
+    // Muestro prod del carrito
     bloqueProd.setAttribute("class", "conjuntoProd");
     bloqueProd.innerHTML = `
       <div class="img-producto">
@@ -53,6 +60,7 @@ const detalleCompra = (products) => {
       <h4>$${item.precio}</h4>
     `;
     detalle.appendChild(bloqueProd);
+    // Actualizo saldo
     saldoCompra();
   });
 };
@@ -130,12 +138,15 @@ const modifElement = () => {
         } else {
           carrito.splice(indProd, 1);
           document.querySelector(".detalleCompra").removeChild(modifProd[i]);
-          document.querySelector(".medioPago").classList.add("invisible");
+          // oculto opciones de pago y habilito btn fin compra
+          opPago();
+          // msj de carrito vacio / redirecciona a index
           carritoVacio();
         }
       }
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+      // actualiza saldo
       saldoCompra();
+      localStorage.setItem("carrito", JSON.stringify(carrito));
     });
   }
 };
@@ -155,10 +166,13 @@ const eliminarProd = () => {
       document
         .querySelector(".detalleCompra")
         .removeChild(document.querySelectorAll(".conjuntoProd")[indiceProd]);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      document.querySelector(".medioPago").classList.add("invisible");
+      // oculto opciones de pago y habilito btn fin compra
+      opPago();
+      // actualiza saldo
       saldoCompra();
+      // msj de carrito vacio / redirecciona a index
       carritoVacio();
+      localStorage.setItem("carrito", JSON.stringify(carrito));
     });
   });
 };
@@ -167,8 +181,28 @@ const eliminarProd = () => {
 const finCompra = () => {
   btnFinCompra.addEventListener("click", (e) => {
     e.preventDefault();
-    document.querySelector(".medioPago").classList.remove("invisible");
+    // Muestro medios de pago
+    document.querySelector(".medioPago").classList.remove("oculto");
+    // Oculto btn finCompra
+    document.querySelector(".termCompra").classList.add("oculto");
+    // Desmarco op elegida
+    document.querySelectorAll("[name=tipoPago]").forEach((x) => {
+      x.checked = false;
+      document.querySelector(
+        ".mjsDescuento"
+      ).innerHTML = `<p>Elige un medio de pago para continuar</p>`;
+    });
   });
+};
+
+// MUESTRO BTN FIN DE COMPRA / OCULTO OPCIONES DE PAGO
+const opPago = () => {
+  // Btn habilita opciones de pago
+  document.querySelector(".termCompra").classList.remove("oculto");
+  // opciones de pago
+  document.querySelector(".medioPago").classList.add("oculto");
+  // btn de pago
+  document.querySelector(".btn-finalizar").classList.add("oculto");
 };
 
 // FINALIZO GESTIÓN, CONFIRMACIÓN DE PAGO
