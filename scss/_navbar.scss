@@ -9,7 +9,6 @@ body {
     display: flex;
     align-items: center;
     z-index: 1;
-
     .navbar-center {
       width: 100%;
       max-width: 1720px;
@@ -19,21 +18,20 @@ body {
       align-items: center;
       justify-content: space-between;
       padding: 0 1.5rem;
-      .nav-icon {
-        height: 100%;
-        .logo_nav {
-          width: 60px;
-          padding: 5px 0;
-        }
-      }
-      h1 {
-        color: $white;
-        font-size: $principal;
-        font-family: $titulos;
-        text-align: center;
-        padding-top: 10px;
-        .bandera {
-          color: #86c6f4;
+      // .nav-icon {
+      //   height: 100%;
+      // }
+      a{
+        text-decoration: none;
+        h1 {
+          color: $white;
+          font-size: $principal;
+          font-family: $titulos;
+          text-align: center;
+          padding-top: 10px;
+          .bandera {
+            color: #86c6f4;
+          }
         }
       }
       .cart-btn {

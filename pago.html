@@ -4,19 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ViceARG</title>
-    <link
-      rel="shortcut icon"
-      href="./img/logo-pestaña.ico"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="./img/ico/logo-pestaña.ico" type="image/x-icon"/>
     <!--icons-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -25,11 +15,13 @@
     <nav class="navbar">
       <div class="navbar-center">
         <span class="nav-icon">
-          <a href="./index.html">
-            <img class="logo_nav" src="./img/logo_nav.ico" alt="imagen_logo" />
-          </a>
+
         </span>
-        <h1>ViceARG</h1>
+        <a href="./index.html">
+          <h1>
+            Vice<span class="bandera">A</span>R<span class="bandera">G</span>
+          </h1>
+        </a>
         <div class="cart-btn">
           <span class="nav-icon">
             <i class="fa-solid fa-hand-holding-dollar"></i>
@@ -47,7 +39,7 @@
           <h3>Categoría</h3>
           <h3>Marca</h3>
           <h3>Modelo</h3>
-          <h3>Precio</h3> 
+          <h3>Precio</h3>
         </div>
         <div class="detalleCompra">
           <!-- Detalle compra -->
@@ -55,17 +47,21 @@
       </section>
 
       <section class="footer-detalle">
+        <!-- Botón seguir comprando -->
         <div class="seguirComprando">
           <button class="btn-detalle">
             <a href="./index.html" class="contCompra">Seguir comprando</a>
           </button>
-          <button class="btn-detalle btn-finCompra"> Terminar compra </button>
         </div>
-
-        <div class="medioPago invisible">
+        <!-- Botón para finalizar compra -->
+        <div class="termCompra">
+          <button class="btn-compra btn-finCompra">Terminar compra</button>
+        </div>
+        <!-- Opciones de pago -->
+        <div class="medioPago oculto">
           <div class="tipoPago">
             <div>
-              <input type="radio" name="tipoPago" id="ef"/>
+              <input type="radio" name="tipoPago" id="ef" />
               <label for="efectivo">Efectivo</label>
             </div>
             <div>
@@ -77,10 +73,9 @@
               <label for="debito">Tarjeta Débito</label>
             </div>
           </div>
-          <div class="mjsDescuento"><p>Elige un medio de pago para continuar</p>
-          </div>
+          <div class="mjsDescuento"></div>
         </div>
-
+        <!-- Detalle de la compra -->
         <div class="resumen">
           <div class="detalleResumen">
             <h4>Cant. Productos</h4>
@@ -94,15 +89,16 @@
             <h4>Descuento</h4>
             <div class="descuento refDetalle">0</div>
           </div>
-          <hr>
+          <hr />
           <div class="detalleResumen">
             <h4>Total</h4>
             <div class="total refDetalle">0</div>
           </div>
         </div>
       </section>
+      <!-- Botón de pago -->
       <section class="btn-finalizar oculto">
-        <button class='footer-btn btnPago'> Pagar </button>
+        <button class="footer-btn btnPago">Pagar</button>
       </section>
     </div>
 
@@ -110,9 +106,10 @@
     <footer>
       <p>Creado por &copy Gonzalo Bazzani</p>
     </footer>
-    
+
     <!-- JS -->
     <script src="./js/script.js" type="module"></script>
+    <script src="./js/extras.js"></script>
     <!-- SweetAlert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
