@@ -88,7 +88,6 @@ const saldoCompra = (desc) => {
 const msjDesc = (medioDePago) => {
   tipoPago.forEach((item) => {
     item.addEventListener("click", (e) => {
-      // console.log(e.target.id)
       document.querySelector(".btn-finalizar").classList.remove("oculto");
       if (e.target.id == medioDePago[0].ref) {
         mjsDescuento.innerHTML = `<p>Por abonar en ${medioDePago[0].medioPago} tienes un descuento del ${medioDePago[0].descuento}%</p>`;
@@ -168,7 +167,6 @@ const eliminarProd = () => {
 const finCompra = () => {
   btnFinCompra.addEventListener("click", (e) => {
     e.preventDefault();
-
     document.querySelector(".medioPago").classList.remove("invisible");
   });
 };
