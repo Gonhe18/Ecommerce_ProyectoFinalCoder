@@ -90,7 +90,7 @@ body .navbar {
       position: relative;
       cursor: pointer; }
       body .navbar .navbar-center .cart-btn .nav-icon .fa-shopping-cart {
-        color: #FFAB4C; }
+        color: #ffab4c; }
       body .navbar .navbar-center .cart-btn .nav-icon .fa-hand-holding-dollar {
         color: #8b9a46; }
       body .navbar .navbar-center .cart-btn .cart-items {
@@ -116,14 +116,14 @@ body .navbar {
     transition: all 0.5; }
     .up i:hover {
       transform: scale(1.2);
-      transition: all .5s;
+      transition: all 0.5s;
       color: #000; }
   .up.show {
     right: 5px; }
 
 /* Inicio */
 body .inicio {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 70px);
   background: url("../img/fondo-index.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -180,7 +180,6 @@ body .productos {
     row-gap: 2rem; }
     body .productos .card-prod .prod {
       padding: 20px 0;
-      border: 1px solid #000;
       border-radius: 10px;
       box-shadow: 2px 4px 10px #000; }
       body .productos .card-prod .prod:hover {
@@ -224,23 +223,33 @@ body .productos {
             margin-right: 0.5rem; }
         body .productos .card-prod .prod .img-contenedor:hover .bag-btn {
           transform: translateX(0); }
-      body .productos .card-prod .prod .tit-contenedor h3 {
-        text-transform: capitalize;
-        font-size: 1.5rem;
-        font-family: "Roboto", sans-serif;
-        margin-top: 1rem;
-        padding: 10px;
-        letter-spacing: 0.1rem;
-        text-align: center;
-        color: #125c13; }
-      body .productos .card-prod .prod .tit-contenedor h4 {
-        margin-top: 0.7rem;
-        letter-spacing: 0.1rem;
-        text-align: center;
-        color: #000;
-        font-size: 1.3rem;
-        font-family: "Roboto", sans-serif;
-        font-weight: bold; }
+      body .productos .card-prod .prod .tit-contenedor {
+        height: 130px;
+        display: flex;
+        flex-direction: column; }
+        body .productos .card-prod .prod .tit-contenedor h3 {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-transform: capitalize;
+          font-size: 1.5rem;
+          font-family: "Roboto", sans-serif;
+          margin-top: 1rem;
+          padding: 10px;
+          letter-spacing: 0.1rem;
+          text-align: center;
+          color: #125c13; }
+        body .productos .card-prod .prod .tit-contenedor h4 {
+          width: 100%;
+          margin-top: 0.7rem;
+          letter-spacing: 0.1rem;
+          text-align: center;
+          color: #000;
+          font-size: 1.3rem;
+          font-family: "Roboto", sans-serif;
+          font-weight: bold; }
 
 /* Filtro */
 body .productos .filter {
@@ -290,6 +299,10 @@ body .bloque-carrito {
       font-family: "Nunito Sans", sans-serif;
       text-align: center;
       margin-bottom: 2rem; }
+    body .bloque-carrito .carrito .contenido-carrito .carrito-vacio {
+      font-size: 2rem;
+      font-family: "Nunito Sans", sans-serif;
+      text-align: center; }
     body .bloque-carrito .carrito .contenido-carrito .carrito-item {
       display: grid;
       align-items: center;
@@ -311,7 +324,8 @@ body .bloque-carrito {
       body .bloque-carrito .carrito .contenido-carrito .carrito-item .fa-chevron-down:hover {
         background: rgba(255, 0, 0, 0.3); }
       body .bloque-carrito .carrito .contenido-carrito .carrito-item .cant-item {
-        text-align: center; }
+        text-align: center;
+        font-size: 1.2rem; }
     body .bloque-carrito .carrito .carrito-footer {
       margin-top: 2rem;
       text-align: center; }
@@ -321,8 +335,8 @@ body .bloque-carrito {
         font-size: 1.7rem; }
       body .bloque-carrito .carrito .carrito-footer .footer-btn {
         padding: 1rem; }
-      body .bloque-carrito .carrito .carrito-footer .oculto {
-        display: none; }
+    body .bloque-carrito .carrito .oculto {
+      display: none; }
   body .bloque-carrito .showCart {
     transform: translateX(0); }
 
@@ -398,7 +412,9 @@ body .pago .footer-detalle {
     justify-content: center;
     text-align: center; }
     body .pago .footer-detalle .seguirComprando .btn-detalle {
-      padding: 10px; }
+      width: 85%;
+      padding: 10px;
+      margin: 5px; }
   body .pago .footer-detalle .medioPago {
     width: 50%;
     padding: 5px 10px;
@@ -445,10 +461,13 @@ body .pago .footer-detalle {
         font-size: 1.2rem; }
       body .pago .footer-detalle .resumen .detalleResumen .descuento {
         font-weight: bold; }
+  body .pago .footer-detalle .invisible {
+    visibility: hidden; }
 
 body .pago .btn-finalizar {
   text-align: center; }
   body .pago .btn-finalizar .footer-btn {
+    width: 25%;
     padding: 10px 25px;
     margin: 10px; }
 

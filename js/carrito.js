@@ -1,5 +1,3 @@
-// Importo Objeto de productos
-import { productos } from "./productoPago.js";
 // Importo carrito
 import { carrito } from "./script.js";
 
@@ -7,74 +5,19 @@ import { carrito } from "./script.js";
 let tarjetas = document.querySelector(".card-prod");
 let visualCarrito = document.querySelector(".contenido-carrito");
 let btnPago = document.querySelector(".btn-pago");
+let categoria = document.getElementById("category");
 
-// Función para filtra productos por id
-export const filtroProd = (arr, prod) => {
-  return arr.find((el) => el.id == prod);
-};
-
-// Modifico botón de compra
-const habBtnCompra = () => {
-  let btnCompra = document.querySelectorAll(".bag-btn");
-  for (let i = 0; i < btnCompra.length; i++) {
-    let indiceBtn = btnCompra[i].getAttribute("data-id");
-    let lugarProd = filtroProd(carrito, indiceBtn);
-    if (lugarProd === undefined) {
-      btnCompra[i].disabled = false;
-      btnCompra[i].innerHTML = `
-        <i class="fas fa-shopping-cart"></i>
-        Agregar a carrito
-      `;
-    } else {
-      btnCompra[i].disabled = true;
-      btnCompra[i].innerHTML = `
-        <i class="fa-solid fa-check-to-slot"></i>
-        En el carrito
-      `;
-    }
-  }
-};
-
-// Muestro/oculto btn para finalizar compra
-const accionPago = () => {
-  carrito.length != 0
-    ? btnPago.classList.remove("oculto")
-    : btnPago.classList.add("oculto");
-};
-
-// Actualizo contador carrito
-const cantProdCarrito = () => {
-  let acumulador = 0;
-  for (let item of carrito) {
-    acumulador += item.cantidad;
-  }
-  document.querySelector(".cart-items").innerHTML = acumulador;
-};
-
-// Alerta al agregar prod
-const alertSeleccionProd = () => {
-  Toastify({
-    text: "Producto agregado al carrito!!",
-    duration: 1500,
-    gravity: "top",
-    position: "right",
-    stopOnFocus: false,
-    style: {
-      background: "##56ab2f",
-      background: "-webkit-linear-gradient(to right, #a8e063, #56ab2f)",
-      background: "linear-gradient(to right, #a8e063, #56ab2f)",
-      color: "#000",
-      fontWeight: "bold",
-      borderRadius: "10px",
-      marginTop: "20px",
-      fontSize: '0.9rem',
-    },
-  }).showToast();
+// Obtengo los productos desde la API
+export const obtencionprod = async () => {
+  const resp = await fetch("./api/productos.json");
+  const producto = await resp.json();
+  generoCard(producto);
+  filtroIndex(producto);
 };
 
 // GENERO LAS CARD
-export const generoCard = (articulos) => {
-  articulos.forEach((prod) => {
+const generoCard = (producto) => {
+  producto.forEach((prod) => {
     let cardProd = document.createElement("article");
     cardProd.classList.add("prod");
     cardProd.innerHTML = `
@@ -94,10 +37,11 @@ export const generoCard = (articulos) => {
   });
   habBtnCompra();
   cantProdCarrito();
+  addProdCarrito(producto);
 };
 
 // AGREGO PRODUCTOS AL OBJETO DEL CARRITO
-export const addProdCarrito = () => {
+const addProdCarrito = (item) => {
   let btnCompra = document.querySelectorAll(".bag-btn");
   // Obtengo producto por ID
   for (let i = 0; i < btnCompra.length; i++) {
@@ -105,7 +49,7 @@ export const addProdCarrito = () => {
       e.preventDefault();
       // Según ID almaceno el producto en el array
       let idItem = btnCompra[i].getAttribute("data-id");
-      let prod = filtroProd(productos, idItem);
+      let prod = filtroProd(item, idItem);
       let itemComprado = {
         id: prod.id,
         categoria: prod.ref,
@@ -176,13 +120,13 @@ const cargarCarrito = () => {
 };
 
 // ACUMULADOR DE PRODUCTOS
-export const cantElementos = () => {
+const cantElementos = () => {
   let contador = document.querySelectorAll(".contador");
-  let saldo = parseInt(document.querySelector(".total-carrito").textContent);
   let totalProductos = document.querySelectorAll(".carrito-item");
-
+  
   for (let i = 0; i < contador.length; i++) {
     contador[i].addEventListener("click", (e) => {
+      let saldo = parseInt(document.querySelector(".total-carrito").textContent);
       let aumentoProd = filtroProd(carrito, e.target.dataset.up);
       let disminProd = filtroProd(carrito, e.target.dataset.down);
       let indiceProd;
@@ -200,15 +144,14 @@ export const cantElementos = () => {
 
       if (e.target.classList.contains("disminuir")) {
         indiceProd = carrito.indexOf(disminProd);
-        // Acumulo el saldo aumentando a medida que agrego prod
+        // Disminuyo el saldo a medida que descuento prod
         saldo -= disminProd.precio;
-
         if (disminProd.cantidad > 1) {
           // Almaceno la cantidad de prod en el objeto
           disminProd.cantidad = carrito[indiceProd].cantidad - 1;
           // Muestro la cantidad de elementos
           document.querySelectorAll(".cant-item")[indiceProd].innerHTML =
-            disminProd.cantidad;
+          disminProd.cantidad;
         } else {
           // Remuevo elemento del Array
           carrito.splice(indiceProd, 1);
@@ -231,7 +174,7 @@ export const cantElementos = () => {
 };
 
 // REMUEVO ELEMENTO DESDE CARRITO
-export const removeProd = () => {
+const removeProd = () => {
   let totalProductos = document.querySelectorAll(".carrito-item");
   let removerProd = document.querySelectorAll(".remove-item");
 
@@ -248,7 +191,7 @@ export const removeProd = () => {
       visualCarrito.removeChild(totalProductos[i]);
       // actualizo saldo
       for (let item of carrito) {
-        saldoNuevo += item.precio;
+        saldoNuevo += item.precio * item.cantidad;
       }
       document.querySelector(".total-carrito").innerHTML = saldoNuevo;
       // Habilito botones de productos
@@ -297,4 +240,84 @@ const vaciarCarrito = () => {
     // Elimino todos los elementos del localStorage
     localStorage.clear();
   });
+};
+
+// FILTRO INDEX
+const filtroIndex = (prod) => {
+  categoria.addEventListener("click", (e) => {
+    let filtro = prod.filter((item) => item.ref === e.target.value);
+    if (filtro != "") {
+      tarjetas.innerHTML = "";
+      generoCard(filtro);
+      addProdCarrito();
+    } else {
+      tarjetas.innerHTML = "";
+      generoCard(prod);
+      addProdCarrito();
+    }
+  });
+};
+
+// Función para filtra productos por id
+export const filtroProd = (arr, prod) => {
+  return arr.find((el) => el.id == prod);
+};
+
+// Habilito/deshabilito botón de compra
+const habBtnCompra = () => {
+  let btnCompra = document.querySelectorAll(".bag-btn");
+  for (let i = 0; i < btnCompra.length; i++) {
+    let indiceBtn = btnCompra[i].getAttribute("data-id");
+    let lugarProd = filtroProd(carrito, indiceBtn);
+    if (lugarProd === undefined) {
+      btnCompra[i].disabled = false;
+      btnCompra[i].innerHTML = `
+        <i class="fas fa-shopping-cart"></i>
+        Agregar a carrito
+      `;
+    } else {
+      btnCompra[i].disabled = true;
+      btnCompra[i].innerHTML = `
+        <i class="fa-solid fa-check-to-slot"></i>
+        En el carrito
+      `;
+    }
+  }
+};
+
+// Muestro/oculto btn para finalizar compra
+const accionPago = () => {
+  carrito.length != 0
+    ? btnPago.classList.remove("oculto")
+    : btnPago.classList.add("oculto");
+};
+
+// Actualizo contador carrito
+const cantProdCarrito = () => {
+  let acumulador = 0;
+  for (let item of carrito) {
+    acumulador += item.cantidad;
+  }
+  document.querySelector(".cart-items").innerHTML = acumulador;
+};
+
+// Alerta al agregar prod
+const alertSeleccionProd = () => {
+  Toastify({
+    text: "Producto agregado al carrito!!",
+    duration: 1500,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: false,
+    style: {
+      background: "##56ab2f",
+      background: "-webkit-linear-gradient(to right, #a8e063, #56ab2f)",
+      background: "linear-gradient(to right, #a8e063, #56ab2f)",
+      color: "#000",
+      fontWeight: "bold",
+      borderRadius: "10px",
+      marginTop: "40px",
+      fontSize: "0.9rem",
+    },
+  }).showToast();
 };

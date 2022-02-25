@@ -70,7 +70,7 @@ body {
             @extend .remove;
           }
         }
-        h4{
+        h4 {
           font-size: $textContenido;
           font-family: $contenido;
         }
@@ -90,7 +90,9 @@ body {
         text-align: center;
         .btn-detalle {
           @extend .btn;
+          width: 85%;
           padding: 10px;
+          margin: 5px;
         }
       }
       .medioPago {
@@ -151,11 +153,16 @@ body {
           }
         }
       }
+      .invisible {
+        visibility: hidden;
+      }
     }
+
     .btn-finalizar {
       text-align: center;
       .footer-btn {
         @extend .btn;
+        width: 25%;
         padding: 10px 25px;
         margin: 10px;
       }
