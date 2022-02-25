@@ -1,0 +1,17 @@
+[
+  {
+    "ref": "ef",
+    "medioPago": "Efectivo",
+    "descuento": 25
+  },
+  {
+    "ref": "tc",
+    "medioPago": "Tarjeta de Crédito",
+    "descuento": 15
+  },
+  {
+    "ref": "deb",
+    "medioPago": "Tarjeta de Débito",
+    "descuento": 10
+  }
+]

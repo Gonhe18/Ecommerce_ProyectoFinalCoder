@@ -37,6 +37,11 @@ body {
         margin-bottom: 2rem;
       }
       .contenido-carrito {
+        .carrito-vacio {
+          font-size: $secundario;
+          font-family: $titSecundario;
+          text-align: center;
+        }
         .carrito-item {
           display: grid;
           align-items: center;
@@ -71,6 +76,7 @@ body {
           }
           .cant-item {
             text-align: center;
+            font-size: $textContenido;
           }
         }
       }
@@ -87,9 +93,9 @@ body {
           padding: 1rem;
           @extend .btn;
         }
-        .oculto {
-          display: none;
-        }
+      }
+      .oculto {
+        display: none;
       }
     }
     .showCart {
