@@ -17,15 +17,29 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 1.5rem;
-      // .nav-icon {
-      //   height: 100%;
-      // }
+      .reloj-icon{
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $white;
+        padding: 20px 10px;
+        .reloj{
+          font-family: $reloj;
+
+        }
+        .fecha{
+          font-family: $reloj;
+        }
+      }
       a{
         text-decoration: none;
+        width: 52%;
         h1 {
           color: $white;
-          font-size: $principal;
+          font-size: $principal + 1;
           font-family: $titulos;
           text-align: center;
           padding-top: 10px;
@@ -36,7 +50,10 @@ body {
       }
       .cart-btn {
         position: relative;
+        width: 28%;
+        padding: 10px;
         cursor: pointer;
+        margin-right: 10px;
         .nav-icon {
           .fa-shopping-cart {
             @extend .icon;
@@ -49,8 +66,8 @@ body {
         }
         .cart-items {
           position: absolute;
-          top: -8px;
-          right: -8px;
+          top: 0;
+          right: 5px;
           background: $white;
           padding: 0 5px;
           border-radius: 30%;

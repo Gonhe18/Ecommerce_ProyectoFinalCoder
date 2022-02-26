@@ -1,5 +1,6 @@
 // Importo las funciones necesarias
 import { obtencionprod, mostrarCarrito } from "./carrito.js";
+import { relojDigital } from "./extras.js";
 import { procesoPago } from "./pago.js";
 
 // Array que almacena cada compra
@@ -19,6 +20,7 @@ window.addEventListener("load", (e) => {
   obtencionprod();
   // Muestro el carrito y aplico sus respectivas funciones
   mostrarCarrito();
+  relojDigital()
 });
 
 // PAGOS
@@ -26,4 +28,5 @@ window.addEventListener("load", (e) => {
   e.preventDefault();
   // Proceso de pago
   procesoPago(carrito)
+  relojDigital()
 })
