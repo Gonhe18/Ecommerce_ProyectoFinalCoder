@@ -20,13 +20,15 @@ window.addEventListener("load", (e) => {
   obtencionprod();
   // Muestro el carrito y aplico sus respectivas funciones
   mostrarCarrito();
-  relojDigital()
+  // Muestro relojDigital
+  relojDigital();
 });
 
 // PAGOS
 window.addEventListener("load", (e) => {
   e.preventDefault();
   // Proceso de pago
-  procesoPago(carrito)
-  relojDigital()
-})
+  procesoPago(carrito);
+  // Muestro relojDigital
+  relojDigital();
+});

@@ -20,12 +20,13 @@ export const relojDigital = () => {
      let hora = d.getHours() <= 9 ? "0" + d.getHours() : d.getHours();
      let minutos = d.getMinutes() <= 9 ? "0" + d.getMinutes() : d.getMinutes();
      let segundos = d.getSeconds() <= 9 ? "0" + d.getSeconds() : d.getSeconds();
-     let dia = d.getDay()
+     let dia = d.getDate()
+     let numDia = d.getDay()
      let mes = d.getMonth()
      let anio = d.getFullYear()
 
      reloj.innerHTML = `${hora}:${minutos}:${segundos}`
-     fecha.innerHTML = `${semana[dia]} ${dia}, ${meses[mes]} ${anio}`
+     fecha.innerHTML = `${semana[numDia]} ${dia}, ${meses[mes]} ${anio}`
   }, 1000)
 }
 
