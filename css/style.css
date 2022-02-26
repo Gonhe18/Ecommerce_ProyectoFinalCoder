@@ -1,8 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Roboto:wght@100;300&family=Teko:wght@600&display=swap");
-.icon, body .navbar .navbar-center .cart-btn .nav-icon .fa-shopping-cart, body .navbar .navbar-center .cart-btn .nav-icon .fa-hand-holding-dollar {
-  margin-right: 0.5rem;
-  font-size: 2rem; }
-
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Roboto:wght@100;300&family=Teko:wght@600&display=swap@?family=VT323&display=swap");
 .remove, body .bloque-carrito .carrito .contenido-carrito .carrito-item .remove-item, body .pago .detalleCompra .conjuntoProd .cant-producto .remove-item {
   color: #5c5a5a;
   padding: 2px;
@@ -45,6 +41,12 @@ body .pago .detalleCompra .conjuntoProd .cant-producto .modifProd .fa-chevron-do
     .btn a:hover, body .bloque-carrito .carrito .carrito-footer .footer-btn a:hover, body .pago .footer-detalle .seguirComprando .btn-detalle a:hover, body .pago .footer-detalle .termCompra .btn-compra a:hover, body .pago .btn-finalizar .footer-btn a:hover {
       color: #000; }
 
+.icon, body .navbar .navbar-center .cart-btn .nav-icon .fa-shopping-cart, body .navbar .navbar-center .cart-btn .nav-icon .fa-hand-holding-dollar {
+  margin-right: 15px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: end; }
+
 * {
   margin: 0;
   padding: 0;
@@ -71,13 +73,26 @@ body .navbar {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 1.5rem; }
+    justify-content: space-between; }
+    body .navbar .navbar-center .reloj-icon {
+      width: 30%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: 20px 10px; }
+      body .navbar .navbar-center .reloj-icon .reloj {
+        font-family: "VT323", monospace; }
+      body .navbar .navbar-center .reloj-icon .fecha {
+        font-family: "VT323", monospace; }
     body .navbar .navbar-center a {
-      text-decoration: none; }
+      text-decoration: none;
+      width: 52%; }
       body .navbar .navbar-center a h1 {
         color: #fff;
-        font-size: 4rem;
+        font-size: 5rem;
         font-family: "Teko", sans-serif;
         text-align: center;
         padding-top: 10px; }
@@ -85,15 +100,18 @@ body .navbar {
           color: #86c6f4; }
     body .navbar .navbar-center .cart-btn {
       position: relative;
-      cursor: pointer; }
+      width: 28%;
+      padding: 10px;
+      cursor: pointer;
+      margin-right: 10px; }
       body .navbar .navbar-center .cart-btn .nav-icon .fa-shopping-cart {
         color: #ffab4c; }
       body .navbar .navbar-center .cart-btn .nav-icon .fa-hand-holding-dollar {
         color: #8b9a46; }
       body .navbar .navbar-center .cart-btn .cart-items {
         position: absolute;
-        top: -8px;
-        right: -8px;
+        top: 0;
+        right: 5px;
         background: #fff;
         padding: 0 5px;
         border-radius: 30%;
@@ -498,9 +516,18 @@ body footer {
 @media screen and (max-width: 560px) {
   body .navbar .navbar-center {
     justify-content: space-between;
-    padding: 0 1rem; }
-    body .navbar .navbar-center h1 {
-      font-size: 3.5rem; }
+    padding: 0 5px; }
+    body .navbar .navbar-center .reloj-icon {
+      width: 20%;
+      padding: 0;
+      align-items: flex-start; }
+      body .navbar .navbar-center .reloj-icon .reloj, body .navbar .navbar-center .reloj-icon .fecha {
+        font-size: 0.8rem;
+        margin: 0; }
+    body .navbar .navbar-center a h1 {
+      font-size: 3.6rem; }
+    body .navbar .navbar-center .cart-btn {
+      width: 20%; }
   body .inicio .banner {
     padding: 2rem 3rem; }
     body .inicio .banner .banner-title {
@@ -543,6 +570,10 @@ body footer {
     body .pago .footer-detalle .seguirComprando {
       width: 70%;
       margin: 10px; }
+    body .pago .footer-detalle .termCompra {
+      width: 65%; }
+      body .pago .footer-detalle .termCompra .btn-compra {
+        width: 100%; }
     body .pago .footer-detalle .medioPago {
       width: 100%;
       flex-flow: column wrap;
@@ -578,6 +609,18 @@ body footer {
     margin: 5px; } }
 
 @media screen and (min-width: 561px) {
+  body .navbar .navbar-center {
+    padding: 0 5px; }
+    body .navbar .navbar-center .reloj-icon {
+      width: 20%;
+      padding: 0; }
+      body .navbar .navbar-center .reloj-icon .reloj, body .navbar .navbar-center .reloj-icon .fecha {
+        font-size: 0.85rem;
+        margin: 0; }
+    body .navbar .navbar-center a h1 {
+      font-size: 3.7rem; }
+    body .navbar .navbar-center .cart-btn {
+      width: 20%; }
   body .productos .titulo-prod h2 {
     font-size: 3.2rem; }
   body .productos .card-prod {
@@ -591,6 +634,14 @@ body footer {
         font-size: 1.3rem; } }
 
 @media screen and (min-width: 768px) {
+  body .navbar .navbar-center {
+    padding: 0 5px; }
+    body .navbar .navbar-center .reloj-icon {
+      width: 20%;
+      padding: 0; }
+      body .navbar .navbar-center .reloj-icon .reloj, body .navbar .navbar-center .reloj-icon .fecha {
+        font-size: 1.05rem;
+        margin: 5px; }
   body .bloque-carrito .carrito {
     width: 30vw;
     min-width: 450px; } }

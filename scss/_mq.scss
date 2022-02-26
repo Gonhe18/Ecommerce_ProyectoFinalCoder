@@ -3,9 +3,23 @@
     .navbar {
       .navbar-center {
         justify-content: space-between;
-        padding: 0 1rem;
-        h1 {
-          font-size: $principal - 0.5;
+        padding: 0 5px;
+        .reloj-icon{
+          width: 20%;
+          padding: 0;
+          align-items: flex-start;
+          .reloj, .fecha{
+            font-size: $textContenido - 0.4;
+            margin: 0;
+          }
+        }
+        a{
+          h1 {
+            font-size: $principal - 0.4;
+          }
+        }
+        .cart-btn {
+          width: 20%;
         }
       }
     }
@@ -107,6 +121,12 @@
           width: 70%;
           margin: 10px;
         }
+        .termCompra{
+          width: 65%;
+          .btn-compra{
+            width: 100%;
+          }
+        }
         .medioPago {
           width: 100%;
           flex-flow: column wrap;
@@ -159,6 +179,27 @@
 
 @media screen and (min-width: 561px) {
   body {
+    .navbar {
+      .navbar-center {
+        padding: 0 5px;
+        .reloj-icon{
+          width: 20%;
+          padding: 0;
+          .reloj, .fecha{
+            font-size: $textContenido - 0.35;
+            margin: 0;
+          }
+        }
+        a{
+          h1 {
+            font-size: $principal - 0.3;
+          }
+        }
+        .cart-btn {
+          width: 20%;
+        }
+      }
+    }
     .productos {
       .titulo-prod {
         h2 {
@@ -185,6 +226,19 @@
 
 @media screen and (min-width: 768px) {
   body {
+    .navbar {
+      .navbar-center {
+        padding: 0 5px;
+        .reloj-icon{
+          width: 20%;
+          padding: 0;
+          .reloj, .fecha{
+            font-size: $textContenido - 0.15;
+            margin: 5px;
+          }
+        }
+      }
+    }
     .bloque-carrito {
       .carrito {
         width: 30vw;
