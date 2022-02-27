@@ -12,7 +12,8 @@ export const obtencionprod = async () => {
   const resp = await fetch("./api/productos.json");
   const producto = await resp.json();
   generoCard(producto);
-  filtroIndex(producto);
+  filtroPorCat(producto);
+  mostrarCarrito();
 };
 
 // GENERO LAS CARD
@@ -35,13 +36,13 @@ const generoCard = (producto) => {
       `;
     tarjetas.appendChild(cardProd);
   });
-  habBtnCompra();
+  btnAgregarACarrito();
   cantProdCarrito();
-  addProdCarrito(producto);
+  agregarACarrito(producto);
 };
 
 // AGREGO PRODUCTOS AL OBJETO DEL CARRITO
-const addProdCarrito = (item) => {
+const agregarACarrito = (item) => {
   let btnCompra = document.querySelectorAll(".bag-btn");
   // Obtengo producto por ID
   for (let i = 0; i < btnCompra.length; i++) {
@@ -49,7 +50,7 @@ const addProdCarrito = (item) => {
       e.preventDefault();
       // Según ID almaceno el producto en el array
       let idItem = btnCompra[i].getAttribute("data-id");
-      let prod = filtroProd(item, idItem);
+      let prod = filtroPorId(item, idItem);
       let itemComprado = {
         id: prod.id,
         categoria: prod.ref,
@@ -60,7 +61,7 @@ const addProdCarrito = (item) => {
         cantidad: 1,
       };
       carrito.push(itemComprado);
-      habBtnCompra();
+      btnAgregarACarrito();
       alertSeleccionProd();
       cantProdCarrito();
       localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -76,15 +77,15 @@ export const mostrarCarrito = () => {
     document.querySelector(".bloque-carrito").classList.add("transparenteBcg");
     document.querySelector(".carrito").classList.add("showCart");
     // CARGO LA INFORMACIÓN DEL CARRITO
-    cargarCarrito();
+    renderCarrito();
     // MENSAJE DE CARRITO VACIO
     msjCarritoVacio();
     // HABILITO BOTÓN PAGO (solo si existen elementos en carrito)
-    accionPago();
+    btnFinalizarCompra();
     // MODIFICO CANTIDAD DE PRODUCTOS
-    cantElementos();
+    modifCantElementos();
     // REMUEVO ELEMENTO DESDE CARRITO
-    removeProd();
+    removerProd();
     // VACIO CARRITO
     vaciarCarrito();
     // OCULTO CARRITO
@@ -93,7 +94,7 @@ export const mostrarCarrito = () => {
 };
 
 // MUESTRO LOS PRODUCTOS AGREGADOS
-const cargarCarrito = () => {
+const renderCarrito = () => {
   let saldo = parseInt(document.querySelector(".total-carrito").textContent);
   // Cargo información de los objetos agregados
   carrito.forEach((item) => {
@@ -122,7 +123,7 @@ const cargarCarrito = () => {
 };
 
 // ACUMULADOR DE PRODUCTOS
-const cantElementos = () => {
+const modifCantElementos = () => {
   let contador = document.querySelectorAll(".contador");
   let totalProductos = document.querySelectorAll(".carrito-item");
 
@@ -131,8 +132,8 @@ const cantElementos = () => {
       let saldo = parseInt(
         document.querySelector(".total-carrito").textContent
       );
-      let aumentoProd = filtroProd(carrito, e.target.dataset.up);
-      let disminProd = filtroProd(carrito, e.target.dataset.down);
+      let aumentoProd = filtroPorId(carrito, e.target.dataset.up);
+      let disminProd = filtroPorId(carrito, e.target.dataset.down);
       let indiceProd;
 
       if (e.target.classList.contains("aumentar")) {
@@ -161,9 +162,9 @@ const cantElementos = () => {
           // Elimino elemento de la vista del carrito
           visualCarrito.removeChild(totalProductos[i]);
           // Habilito botones productos
-          habBtnCompra();
+          btnAgregarACarrito();
           // Oculto btn finalizar compra
-          accionPago();
+          btnFinalizarCompra();
           // Msj carrito vacio
           msjCarritoVacio();
         }
@@ -179,7 +180,7 @@ const cantElementos = () => {
 };
 
 // REMUEVO ELEMENTO DESDE CARRITO
-const removeProd = () => {
+const removerProd = () => {
   let totalProductos = document.querySelectorAll(".carrito-item");
   let removerProd = document.querySelectorAll(".remove-item");
 
@@ -187,7 +188,7 @@ const removeProd = () => {
     removerProd[i].addEventListener("click", (e) => {
       e.preventDefault();
       let idProd = removerProd[i].getAttribute("data-id");
-      let indiceProd = carrito.indexOf(filtroProd(carrito, idProd));
+      let indiceProd = carrito.indexOf(filtroPorId(carrito, idProd));
       let saldoNuevo = 0;
       // Remuevo elemento del Array
       carrito.splice(indiceProd, 1);
@@ -199,9 +200,9 @@ const removeProd = () => {
       }
       document.querySelector(".total-carrito").innerHTML = saldoNuevo;
       // Habilito botones de productos
-      habBtnCompra();
+      btnAgregarACarrito();
       // Oculto el btn finalizar compra en caso de que no existan prod
-      accionPago();
+      btnFinalizarCompra();
       // Actualizo contador carrito
       cantProdCarrito();
       // Msj carrito vacio
@@ -240,9 +241,9 @@ const vaciarCarrito = () => {
     // contador de prod
     document.querySelector(".cart-items").innerHTML = "0";
     // Habilito botones productos
-    habBtnCompra();
+    btnAgregarACarrito();
     // Oculto btn finalizar compra
-    accionPago();
+    btnFinalizarCompra();
     // Msj carrito vacio
     msjCarritoVacio();
     // Elimino todos los elementos del localStorage
@@ -251,32 +252,32 @@ const vaciarCarrito = () => {
 };
 
 // FILTRO INDEX
-const filtroIndex = (prod) => {
+const filtroPorCat = (prod) => {
   categoria.addEventListener("click", (e) => {
     let filtro = prod.filter((item) => item.ref === e.target.value);
     if (filtro != "") {
       tarjetas.innerHTML = "";
       generoCard(filtro);
-      addProdCarrito();
+      agregarACarrito();
     } else {
       tarjetas.innerHTML = "";
       generoCard(prod);
-      addProdCarrito();
+      agregarACarrito();
     }
   });
 };
 
 // Función para filtra productos por id
-export const filtroProd = (arr, prod) => {
+export const filtroPorId = (arr, prod) => {
   return arr.find((el) => el.id == prod);
 };
 
 // Habilito/deshabilito botón de compra
-const habBtnCompra = () => {
+const btnAgregarACarrito = () => {
   let btnCompra = document.querySelectorAll(".bag-btn");
   for (let i = 0; i < btnCompra.length; i++) {
     let indiceBtn = btnCompra[i].getAttribute("data-id");
-    let lugarProd = filtroProd(carrito, indiceBtn);
+    let lugarProd = filtroPorId(carrito, indiceBtn);
     if (lugarProd === undefined) {
       btnCompra[i].disabled = false;
       btnCompra[i].innerHTML = `
@@ -294,7 +295,7 @@ const habBtnCompra = () => {
 };
 
 // Muestro/oculto btn para finalizar compra
-const accionPago = () => {
+const btnFinalizarCompra = () => {
   carrito.length != 0
     ? btnPago.classList.remove("oculto")
     : btnPago.classList.add("oculto");

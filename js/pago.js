@@ -1,5 +1,5 @@
 // Importación
-import { filtroProd } from "./carrito.js";
+import { filtroPorId } from "./carrito.js";
 
 // Variables
 const cantProd = document.querySelector(".cantProd");
@@ -18,13 +18,13 @@ export const procesoPago = (carrito) => {
   // Muestro productos en carrito
   detalleCompra(carrito);
   // Aumento/disminuyo prod
-  modifElement();
+  modifCantElement();
   // Elimino prod del carrito
   eliminarProd();
   // Obtengo medios de pago desde API
   mediosDePago();
   // Habilito btn para finalizar compra
-  finCompra();
+  terminarCompra();
 };
 
 // OBTENGO MEDIOS DE PAGO DESDE API
@@ -71,7 +71,7 @@ const saldoCompra = (desc) => {
   let saldoProd = 0;
   let acumDesc = 0;
   carrito.forEach((prod) => {
-    let indiceProd = carrito.indexOf(filtroProd(carrito, prod.id));
+    let indiceProd = carrito.indexOf(filtroPorId(carrito, prod.id));
     if (carrito.length > 0) {
       // Cantidad de productos
       cantProd.innerHTML = acumCant += carrito[indiceProd].cantidad;
@@ -93,7 +93,7 @@ const saldoCompra = (desc) => {
 };
 
 // MENSAJE DE DESCUENTO
-const msjDesc = (medioDePago) => {
+const msjDescuento = (medioDePago) => {
   tipoPago.forEach((item) => {
     item.addEventListener("click", (e) => {
       document.querySelector(".btn-finalizar").classList.remove("oculto");
@@ -114,13 +114,13 @@ const msjDesc = (medioDePago) => {
 };
 
 // AUMENTO/DISMINUYO CANT DE PRODUCTOS
-const modifElement = () => {
+const modifCantElement = () => {
   let modifProd = document.querySelectorAll(".conjuntoProd");
   for (let i = 0; i < modifProd.length; i++) {
     modifProd[i].addEventListener("click", (e) => {
       // Obtengo los productos por ID
-      let prdAum = filtroProd(carrito, e.target.dataset.up);
-      let prdDism = filtroProd(carrito, e.target.dataset.down);
+      let prdAum = filtroPorId(carrito, e.target.dataset.up);
+      let prdDism = filtroPorId(carrito, e.target.dataset.down);
       let indProd;
 
       if (e.target.classList.contains("aumentar")) {
@@ -139,7 +139,7 @@ const modifElement = () => {
           carrito.splice(indProd, 1);
           document.querySelector(".detalleCompra").removeChild(modifProd[i]);
           // oculto opciones de pago y habilito btn fin compra
-          opPago();
+          opcionesPago();
           // msj de carrito vacio / redirecciona a index
           carritoVacio();
         }
@@ -158,7 +158,7 @@ const eliminarProd = () => {
     item.addEventListener("click", (e) => {
       e.preventDefault();
       let indiceProd = carrito.indexOf(
-        filtroProd(carrito, e.target.dataset.id)
+        filtroPorId(carrito, e.target.dataset.id)
       );
       // Remuevo elemento del Array
       carrito.splice(indiceProd, 1);
@@ -167,7 +167,7 @@ const eliminarProd = () => {
         .querySelector(".detalleCompra")
         .removeChild(document.querySelectorAll(".conjuntoProd")[indiceProd]);
       // oculto opciones de pago y habilito btn fin compra
-      opPago();
+      opcionesPago();
       // actualiza saldo
       saldoCompra();
       // msj de carrito vacio / redirecciona a index
@@ -178,7 +178,7 @@ const eliminarProd = () => {
 };
 
 // HABILITA MEDIOS DE PAGOS
-const finCompra = () => {
+const terminarCompra = () => {
   btnFinCompra.addEventListener("click", (e) => {
     e.preventDefault();
     // Muestro medios de pago
@@ -196,7 +196,7 @@ const finCompra = () => {
 };
 
 // MUESTRO BTN FIN DE COMPRA / OCULTO OPCIONES DE PAGO
-const opPago = () => {
+const opcionesPago = () => {
   // Btn habilita opciones de pago
   document.querySelector(".termCompra").classList.remove("oculto");
   // opciones de pago
@@ -208,7 +208,7 @@ const opPago = () => {
 // FINALIZO GESTIÓN, CONFIRMACIÓN DE PAGO
 const finalizarPago = (mPago) => {
   // Muestro msj de descuento y habilito btn para pago
-  msjDesc(mPago);
+  msjDescuento(mPago);
 
   btnPago.addEventListener("click", (e) => {
     e.preventDefault();
