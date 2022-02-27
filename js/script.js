@@ -12,12 +12,12 @@ let carritoAlmacen = JSON.parse(localStorage.getItem("carrito")) || [];
 // PRODUCTOS / CARRITO
 window.addEventListener("load", (e) => {
   e.preventDefault();
+  // Muestro relojDigital
+  relojDigital();
   // Si existe Storage lo recupero
   carrito = [...carritoAlmacen];
   // Genero las card en el index
   obtencionprod();
   // Gestión pagos
   procesoPago(carrito);
-  // Muestro relojDigital
-  relojDigital();
 });
