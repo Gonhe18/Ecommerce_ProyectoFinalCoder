@@ -8,7 +8,7 @@ let btnPago = document.querySelector(".btn-pago");
 let categoria = document.getElementById("category");
 
 // Obtengo los productos desde la API
-export const obtencionprod = async () => {
+export const obtencionProd = async () => {
   const resp = await fetch("./api/productos.json");
   const producto = await resp.json();
   generoCard(producto);
