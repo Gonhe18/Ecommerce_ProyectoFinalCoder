@@ -1,5 +1,5 @@
 // Importo las funciones necesarias
-import { obtencionprod } from "./carrito.js";
+import { obtencionProd } from "./carrito.js";
 import { procesoPago } from "./pago.js";
 import { relojDigital } from "./extras.js";
 
@@ -17,7 +17,7 @@ window.addEventListener("load", (e) => {
   // Si existe Storage lo recupero
   carrito = [...carritoAlmacen];
   // Genero las card en el index
-  obtencionprod();
+  obtencionProd();
   // Gestión pagos
   procesoPago(carrito);
 });
