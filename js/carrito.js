@@ -4,7 +4,6 @@ import { carrito } from "./script.js";
 // Variables
 let tarjetas = document.querySelector(".card-prod");
 let visualCarrito = document.querySelector(".contenido-carrito");
-let btnPago = document.querySelector(".btn-pago");
 let categoria = document.getElementById("category");
 
 // Obtengo los productos desde la API
@@ -12,13 +11,13 @@ export const obtencionProd = async () => {
   const resp = await fetch("./api/productos.json");
   const producto = await resp.json();
   generoCard(producto);
-  filtroPorCat(producto);
+  filtroProductos(producto);
   mostrarCarrito();
 };
 
 // GENERO LAS CARD
-const generoCard = (producto) => {
-  producto.forEach((prod) => {
+const generoCard = (productos) => {
+  productos.forEach((prod) => {
     let cardProd = document.createElement("article");
     cardProd.classList.add("prod");
     cardProd.innerHTML = `
@@ -38,7 +37,7 @@ const generoCard = (producto) => {
   });
   btnAgregarACarrito();
   cantProdCarrito();
-  agregarACarrito(producto);
+  agregarACarrito(productos);
 };
 
 // AGREGO PRODUCTOS AL OBJETO DEL CARRITO
@@ -69,8 +68,25 @@ const agregarACarrito = (item) => {
   }
 };
 
+// Creo filtro de productos de forma dinámica
+const filtroProductos = (prod) => {
+  let filter = document.getElementById("category");
+  // Creo nuevo Array con todas las catergorias de productos
+  let catProd = prod.map((e) => e.ref);
+  // Filtro las categorías y comparo eliminando aquellas que se repiten
+  let listaCat = catProd.filter((item, index) => {
+    return catProd.indexOf(item) === index;
+  });
+  for (let cat of listaCat) {
+    filter.innerHTML += `
+      <option value="${cat}">${cat}</option>  
+    `;
+  }
+  filtroPorCat(prod);
+};
+
 // MUESTRO CARRITO
-export const mostrarCarrito = () => {
+const mostrarCarrito = () => {
   document.querySelector(".cart-btn").addEventListener("click", (e) => {
     e.preventDefault();
     // Muestro carro
@@ -80,8 +96,6 @@ export const mostrarCarrito = () => {
     renderCarrito();
     // MENSAJE DE CARRITO VACIO
     msjCarritoVacio();
-    // HABILITO BOTÓN PAGO (solo si existen elementos en carrito)
-    btnFinalizarCompra();
     // MODIFICO CANTIDAD DE PRODUCTOS
     modifCantElementos();
     // REMUEVO ELEMENTO DESDE CARRITO
@@ -104,14 +118,14 @@ const renderCarrito = () => {
     templateCarrito.innerHTML = `
       <img src='${item.img}' alt="prod"/>
       <div>
-      <h4>${item.categoria} - ${item.marca} ${item.modelo}</h4>
-      <h5>$${item.precio}</h5>
-      <span class="remove-item" data-id=${item.id}>Remove<span>
+        <h4>${item.categoria} - ${item.marca} ${item.modelo}</h4>
+        <h5>$${item.precio}</h5>
+        <span class="remove-item" data-id=${item.id}>Remove<span>
       </div>
       <div class='contador'>
-      <i class="fas fa-chevron-up aumentar" data-up=${item.id} ></i>
-      <p class="cant-item">${item.cantidad}</p>
-      <i class="fas fa-chevron-down disminuir" data-down=${item.id}></i>
+        <i class="fas fa-chevron-up aumentar" data-up=${item.id} ></i>
+        <p class="cant-item">${item.cantidad}</p>
+        <i class="fas fa-chevron-down disminuir" data-down=${item.id}></i>
       </div>
     `;
     visualCarrito.appendChild(templateCarrito);
@@ -163,8 +177,6 @@ const modifCantElementos = () => {
           visualCarrito.removeChild(totalProductos[i]);
           // Habilito botones productos
           btnAgregarACarrito();
-          // Oculto btn finalizar compra
-          btnFinalizarCompra();
           // Msj carrito vacio
           msjCarritoVacio();
         }
@@ -201,8 +213,6 @@ const removerProd = () => {
       document.querySelector(".total-carrito").innerHTML = saldoNuevo;
       // Habilito botones de productos
       btnAgregarACarrito();
-      // Oculto el btn finalizar compra en caso de que no existan prod
-      btnFinalizarCompra();
       // Actualizo contador carrito
       cantProdCarrito();
       // Msj carrito vacio
@@ -234,16 +244,12 @@ const vaciarCarrito = () => {
     e.preventDefault();
     // Elimino el contenido del carro
     carrito.splice((0)[carrito.length]);
-    // lista de prod
+    // limpio lista de prod
     document.querySelector(".contenido-carrito").innerHTML = "";
-    // precio final
-    document.querySelector(".total-carrito").innerHTML = "0";
     // contador de prod
-    document.querySelector(".cart-items").innerHTML = "0";
+    cantProdCarrito();
     // Habilito botones productos
     btnAgregarACarrito();
-    // Oculto btn finalizar compra
-    btnFinalizarCompra();
     // Msj carrito vacio
     msjCarritoVacio();
     // Elimino todos los elementos del localStorage
@@ -292,13 +298,6 @@ const btnAgregarACarrito = () => {
       `;
     }
   }
-};
-
-// Muestro/oculto btn para finalizar compra
-const btnFinalizarCompra = () => {
-  carrito.length != 0
-    ? btnPago.classList.remove("oculto")
-    : btnPago.classList.add("oculto");
 };
 
 // Mensaje "Carrito Vacio"
