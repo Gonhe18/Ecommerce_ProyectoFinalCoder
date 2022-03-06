@@ -97,18 +97,11 @@ const msjDescuento = (medioDePago) => {
   tipoPago.forEach((item) => {
     item.addEventListener("click", (e) => {
       document.querySelector(".btn-finalizar").classList.remove("oculto");
-      if (e.target.id == medioDePago[0].ref) {
-        mjsDescuento.innerHTML = `<p>Por abonar en ${medioDePago[0].medioPago} tienes un descuento del ${medioDePago[0].descuento}%</p>`;
-        saldoCompra(medioDePago[0].descuento);
-      }
-      if (e.target.id == medioDePago[1].ref) {
-        mjsDescuento.innerHTML = `<p>Por abonar con ${medioDePago[1].medioPago} tienes un descuento del ${medioDePago[1].descuento}%</p>`;
-        saldoCompra(medioDePago[1].descuento);
-      }
-      if (e.target.id == medioDePago[2].ref) {
-        mjsDescuento.innerHTML = `<p>Por abonar con ${medioDePago[2].medioPago} tienes un descuento del ${medioDePago[2].descuento}%</p>`;
-        saldoCompra(medioDePago[2].descuento);
-      }
+      let mPago = medioDePago.find((md) => md.ref === e.target.id);
+      mjsDescuento.innerHTML = `
+        <p>Por abonar con ${mPago.medioPago} tienes un descuento del ${mPago.descuento}%</p>
+      `;
+      saldoCompra(mPago.descuento);
     });
   });
 };
@@ -225,7 +218,7 @@ const finalizarPago = (mPago) => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          html: '<img src="./img/ico/icon-pago-exitoso.png" style= "width: 120px"/>',
+          html: '<img src="./img/ico/icon-pago-exitoso.png" style= "width: 175px"/>',
           title: "Pago realizado con éxito!!",
           showConfirmButton: false,
           timer: 2500,
