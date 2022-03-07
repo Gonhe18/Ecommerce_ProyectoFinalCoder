@@ -43,8 +43,12 @@ const detalleCompra = (products) => {
     // Muestro prod del carrito
     bloqueProd.setAttribute("class", "conjuntoProd");
     bloqueProd.innerHTML = `
-      <div class="img-producto">
+      <div class="info-producto">
         <img src="${item.img}" alt="Imagen ${item.categoria}" data-id='${item.id}'>
+        <div class="title-prod">
+          <h4>${item.marca}</h4>
+          <h4>${item.modelo}</h4>
+        </div>
       </div>
       <div class="cant-producto">
         <div class= modifProd>
@@ -54,9 +58,6 @@ const detalleCompra = (products) => {
         </div>
         <span class="remove-item" data-id=${item.id}>Remove<span>
       </div>
-      <h4>${item.categoria}</h4>
-      <h4>${item.marca}</h4>
-      <h4>${item.modelo}</h4>
       <h4>$${item.precio}</h4>
     `;
     detalle.appendChild(bloqueProd);
