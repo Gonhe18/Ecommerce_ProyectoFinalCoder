@@ -27,7 +27,7 @@ const generoCard = (productos) => {
           <i class="fas fa-shopping-cart"></i>
         Agregar a carrito
         </button>
-      </div>
+        </div>
       <div class='tit-contenedor'>
         <h3>${prod.marca} ${prod.modelo}</h3>
         <h4>$${prod.precio}</h4>
