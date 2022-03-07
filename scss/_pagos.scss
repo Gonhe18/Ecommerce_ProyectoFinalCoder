@@ -12,9 +12,10 @@ body {
       flex-direction: column;
       align-items: center;
       text-align: center;
+      width: 100%;
       .titulo-detalle {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: 3fr 1fr 1fr;
         width: 100%;
         h3 {
           padding: 10px 0;
@@ -34,13 +35,23 @@ body {
       .conjuntoProd {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: 3fr 1fr 1fr;
         align-items: center;
         padding: 10px 0;
         border: #000 1px solid;
-        .img-producto {
+        .info-producto {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          font-size: $textContenido;
+          font-family: $contenido;
+          .title-prod {
+            display: flex;
+            flex-direction: column;
+          }
           img {
-            width: 70px;
+            width: 80px;
           }
         }
         .cant-producto {
@@ -95,13 +106,13 @@ body {
           margin: 5px;
         }
       }
-      .termCompra{
+      .termCompra {
         width: 50%;
         padding: 5px 10px;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-        .btn-compra{
+        .btn-compra {
           @extend .btn;
           width: 50%;
           padding: 10px;

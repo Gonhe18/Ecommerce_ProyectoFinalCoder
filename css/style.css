@@ -373,10 +373,11 @@ body .pago .detalle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center; }
+  text-align: center;
+  width: 100%; }
   body .pago .detalle .titulo-detalle {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 3fr 1fr 1fr;
     width: 100%; }
     body .pago .detalle .titulo-detalle h3 {
       padding: 10px 0;
@@ -393,12 +394,22 @@ body .pago .detalleCompra {
   body .pago .detalleCompra .conjuntoProd {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 3fr 1fr 1fr;
     align-items: center;
     padding: 10px 0;
     border: #000 1px solid; }
-    body .pago .detalleCompra .conjuntoProd .img-producto img {
-      width: 70px; }
+    body .pago .detalleCompra .conjuntoProd .info-producto {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      font-size: 1.2rem;
+      font-family: "Roboto", sans-serif; }
+      body .pago .detalleCompra .conjuntoProd .info-producto .title-prod {
+        display: flex;
+        flex-direction: column; }
+      body .pago .detalleCompra .conjuntoProd .info-producto img {
+        width: 80px; }
     body .pago .detalleCompra .conjuntoProd .cant-producto .modifProd {
       width: 100%;
       display: flex;

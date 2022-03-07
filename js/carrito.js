@@ -22,7 +22,7 @@ const generoCard = (productos) => {
     cardProd.classList.add("prod");
     cardProd.innerHTML = `
       <div class="img-contenedor">
-        <img src='${prod.img}' alt="Producto" class="prod-img" class="icon-pago"/>
+        <img src='${prod.img}' alt="Producto" class="prod-img"/>
         <button class="bag-btn" data-id=${prod.id}>
           <i class="fas fa-shopping-cart"></i>
         Agregar a carrito
