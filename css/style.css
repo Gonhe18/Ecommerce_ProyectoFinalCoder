@@ -407,7 +407,8 @@ body .pago .detalleCompra {
       font-family: "Roboto", sans-serif; }
       body .pago .detalleCompra .conjuntoProd .info-producto .title-prod {
         display: flex;
-        flex-direction: column; }
+        flex-direction: column;
+        width: 50%; }
       body .pago .detalleCompra .conjuntoProd .info-producto img {
         width: 80px; }
     body .pago .detalleCompra .conjuntoProd .cant-producto .modifProd {
