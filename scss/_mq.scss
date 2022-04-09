@@ -15,17 +15,19 @@
         }
         a{
           h1 {
-            font-size: $principal - 0.4;
+            font-size: $principal - 1.2;
           }
         }
         .cart-btn {
-          width: 20%;
+          width: 10%;
         }
       }
     }
     .inicio {
+      // min-height: 50vh;
       .banner {
-        padding: 2rem 3rem;
+        padding: 2rem 0;
+        width: 90%;
         .banner-title {
           font-size: $secundario + 0.5;
         }
@@ -43,10 +45,9 @@
         }
       }
       .card-prod {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
         .prod {
-          width: 80%;
-          margin: auto;
           .tit-contenedor {
             h3 {
               font-size: $secundario - 0.7;
@@ -78,6 +79,9 @@
         .carrito-footer {
           h3 {
             font-size: $contenido;
+          }
+          button{
+            margin-bottom:10px;
           }
         }
       }
