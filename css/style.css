@@ -537,11 +537,12 @@ body footer {
         font-size: 0.8rem;
         margin: 0; }
     body .navbar .navbar-center a h1 {
-      font-size: 3.6rem; }
+      font-size: 2.8rem; }
     body .navbar .navbar-center .cart-btn {
-      width: 20%; }
+      width: 10%; }
   body .inicio .banner {
-    padding: 2rem 3rem; }
+    padding: 2rem 0;
+    width: 90%; }
     body .inicio .banner .banner-title {
       font-size: 2.5rem; }
     body .inicio .banner .banner-btn a {
@@ -549,12 +550,10 @@ body footer {
   body .productos .titulo-prod h2 {
     font-size: 2rem; }
   body .productos .card-prod {
-    width: 100%; }
-    body .productos .card-prod .prod {
-      width: 80%;
-      margin: auto; }
-      body .productos .card-prod .prod .tit-contenedor h3 {
-        font-size: 1.3rem; }
+    display: flex;
+    flex-direction: column; }
+    body .productos .card-prod .prod .tit-contenedor h3 {
+      font-size: 1.3rem; }
   body .productos .filter .category #category {
     width: 80%; }
   body .bloque-carrito .carrito .contenido-carrito .carrito-item {
@@ -565,6 +564,8 @@ body footer {
       font-size: 0.95rem; }
   body .bloque-carrito .carrito .carrito-footer h3 {
     font-size: "Roboto", sans-serif; }
+  body .bloque-carrito .carrito .carrito-footer button {
+    margin-bottom: 10px; }
   body .pago .detalle .titulo-detalle h3 {
     font-size: 1rem;
     padding: 10px 5px; }
